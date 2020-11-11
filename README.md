@@ -2,10 +2,8 @@
 
 This module creates a set of AWS resources: 
 
-- AWS ECS Cluster
 - AWS ECS Fargate Service
 - AWS Security group for the Fargate Service
-- ALB Listener rule and target group for the Fargate Service
 - A set of monitoring resources including Slack notifications
 
 ## Variables
