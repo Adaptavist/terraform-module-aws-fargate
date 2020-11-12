@@ -174,8 +174,3 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
   }
   tags = var.tags
 }
-
-resource "aws_cloudwatch_log_group" "this" {
-  name = "/fargate/${var.fargate_service_name}"
-  tags = var.tags
-}
