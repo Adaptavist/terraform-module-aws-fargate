@@ -1,7 +1,3 @@
-output aws_cloudwatch_log_group_arn {
-  value = aws_cloudwatch_log_group.this.arn
-}
-
 output sns_alarm_topic_arn {
   value = aws_sns_topic.alarm.arn
 }

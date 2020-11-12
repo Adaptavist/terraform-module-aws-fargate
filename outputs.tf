@@ -1,7 +1,3 @@
-output aws_cloudwatch_log_group_arn {
-  value = module.monitoring.aws_cloudwatch_log_group_arn
-}
-
 output fargate_service_name {
   value = aws_ecs_service.fargate.name
 }
