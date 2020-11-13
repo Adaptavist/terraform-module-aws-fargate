@@ -34,7 +34,7 @@ resource aws_security_group "this" {
 }
 
 resource aws_ecs_service "fargate" {
-  name                               = "${module.labels.id}-${var.name}"
+  name                               = module.labels.id
   task_definition                    = var.task_definition
   desired_count                      = var.desired_count
   deployment_minimum_healthy_percent = var.min_healthy_percent
