@@ -1,3 +1,11 @@
+## [1.1.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.0...v1.1.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* removed cloudwatch log creation ([5002e59](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/5002e59ecea420fc44d08c986a46641ec6e7b445))
+* removed invalid character ([891d49b](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/891d49b0052b9846fbfe0bdf57d092a09f34e3a9))
+
 # [1.1.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.0.0...v1.1.0) (2020-11-11)
 
 
