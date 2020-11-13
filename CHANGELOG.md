@@ -1,3 +1,10 @@
+## [1.1.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.1...v1.1.2) (2020-11-13)
+
+
+### Bug Fixes
+
+* fargate service name correction ([5748854](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/5748854bcb44ed7f63089f3f0b5d971b14cbd452))
+
 ## [1.1.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.0...v1.1.1) (2020-11-12)
 
 
