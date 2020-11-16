@@ -15,7 +15,7 @@ resource aws_security_group "this" {
 
   egress {
     description      = "Egress"
-    protocol         = var.protocol
+    protocol         = "-1"
     from_port        = 0
     to_port          = 0
     cidr_blocks      = var.sg_egress_cidr_blocks

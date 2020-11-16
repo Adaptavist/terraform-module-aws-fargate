@@ -76,12 +76,6 @@ variable "port" {
   description = "The port the service is available from"
 }
 
-variable "protocol" {
-  type        = string
-  default     = "HTTP"
-  description = "protocol used by the service."
-}
-
 variable "ecs_cluster_arn" {
   type        = string
   description = "ECS Cluster ARN"
