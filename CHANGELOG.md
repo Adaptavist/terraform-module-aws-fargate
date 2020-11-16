@@ -1,3 +1,10 @@
+## [1.1.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.2...v1.1.3) (2020-11-16)
+
+
+### Bug Fixes
+
+* removed outbound protocol ([fa37117](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/fa37117a46a27d0fe760055d1cbd1084c532f306))
+
 ## [1.1.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.1...v1.1.2) (2020-11-13)
 
 
