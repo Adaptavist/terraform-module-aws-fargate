@@ -27,7 +27,7 @@ variable slack_webhook_url {
   description = "Slack webhook URL for Cloudwatch alarm notifications"
 }
 
-variable "alb_ref_and_target_groups_to_monitor" {
+variable "alb_and_target_groups_monitoring_dimensions" {
   type        = map(string)
   description = "A map representing alb references in the format /loadbalancer/{name} and target group suffixes that will be monitored with cloudwatch"
 }

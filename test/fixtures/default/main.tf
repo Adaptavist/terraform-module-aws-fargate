@@ -19,20 +19,20 @@ resource aws_ecs_cluster "this" {
 }
 
 module "this" {
-  source                               = "../../.."
-  namespace                            = "avst-tf"
-  stage                                = "stg"
-  name                                 = "test"
-  tags                                 = local.tags
-  alb_sg_id                            = ""
-  desired_count                        = 2
-  region                               = "eu-west-1"
-  slack_webhook_url                    = "slack.com/bar"
-  subnet_ids                           = [for s in data.aws_subnet.example : s.id]
-  task_definition                      = ""
-  vpc_id                               = data.aws_vpc.default.id
-  ecs_cluster_arn                      = aws_ecs_cluster.this.arn
-  alb_arn_and_target_groups_to_monitor = {}
+  source                                      = "../../.."
+  namespace                                   = "avst-tf"
+  stage                                       = "stg"
+  name                                        = "test"
+  tags                                        = local.tags
+  alb_sg_id                                   = ""
+  desired_count                               = 2
+  region                                      = "eu-west-1"
+  slack_webhook_url                           = "slack.com/bar"
+  subnet_ids                                  = [for s in data.aws_subnet.example : s.id]
+  task_definition                             = ""
+  vpc_id                                      = data.aws_vpc.default.id
+  ecs_cluster_arn                             = aws_ecs_cluster.this.arn
+  alb_and_target_groups_monitoring_dimensions = {}
 }
 
 data aws_caller_identity "current" {}

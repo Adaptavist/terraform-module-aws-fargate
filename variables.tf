@@ -147,7 +147,7 @@ variable "alarm_data_missing_action" {
   description = "Missing data action for success responses alarm. Possible values: missing or breaching"
 }
 
-variable "alb_arn_and_target_groups_to_monitor" {
+variable "alb_and_target_groups_monitoring_dimensions" {
   type        = map(string)
   description = "A map representing albs and target groups that will be monitored with cloudwatch"
 }

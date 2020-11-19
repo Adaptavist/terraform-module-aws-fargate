@@ -69,7 +69,7 @@ module "monitoring" {
   namespace = var.namespace
   tags      = module.labels.tags
 
-  alb_ref_and_target_groups_to_monitor = var.alb_arn_and_target_groups_to_monitor
+  alb_and_target_groups_monitoring_dimensions = var.alb_and_target_groups_monitoring_dimensions
 
   fargate_service_name = aws_ecs_service.fargate.name
   desired_count        = var.desired_count
