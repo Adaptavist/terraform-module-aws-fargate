@@ -32,7 +32,8 @@ module "this" {
   task_definition                             = ""
   vpc_id                                      = data.aws_vpc.default.id
   ecs_cluster_arn                             = aws_ecs_cluster.this.arn
-  alb_and_target_groups_monitoring_dimensions = {}
+  alb_and_target_groups_monitoring_dimensions = {"abc/cd" = "ab/cd"}
+  target_group_arns                           = ["arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"]
 }
 
 data aws_caller_identity "current" {}

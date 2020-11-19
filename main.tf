@@ -50,9 +50,10 @@ resource aws_ecs_service "fargate" {
   }
 
   dynamic load_balancer {
-    for_each = toset(var.target_group_arns)
+    for_each = [for tg in toset(var.target_group_arns) : { arn = tg }]
+
     content {
-      target_group_arn = each
+      target_group_arn = load_balancer.value.arn
       container_name   = var.name
       container_port   = var.port
     }
