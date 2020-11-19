@@ -1,3 +1,10 @@
+## [1.1.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.3...v1.1.4) (2020-11-19)
+
+
+### Bug Fixes
+
+* renamed variables for clarification ([b8e961b](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/b8e961b0322cef13241d8a64c9acd2be26d5e273))
+
 ## [1.1.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.2...v1.1.3) (2020-11-16)
 
 
