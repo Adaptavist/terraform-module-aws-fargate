@@ -1,3 +1,10 @@
+## [1.1.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.4...v1.1.5) (2020-11-19)
+
+
+### Bug Fixes
+
+* corrected for each loop ([40e5d82](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/40e5d82401e5ec27e4a3dbad5a4262f66d2ed81c))
+
 ## [1.1.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.3...v1.1.4) (2020-11-19)
 
 
