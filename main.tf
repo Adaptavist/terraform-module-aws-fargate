@@ -59,6 +59,8 @@ resource aws_ecs_service "fargate" {
     }
   }
 
+  wait_for_steady_state = var.wait_for_steady_state
+
   tags = module.labels.tags
 }
 

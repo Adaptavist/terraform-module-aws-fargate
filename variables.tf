@@ -109,6 +109,12 @@ variable "max_percent" {
   description = "max percent of healthy container instances"
 }
 
+variable "wait_for_steady_state" {
+  type        = bool
+  default     = false
+  description = "Terraform will wait for the service to reach a steady state (like aws ecs wait services-stable) before continuing"
+}
+
 // Monitoring
 
 variable "create_connection_error_alarm" {
