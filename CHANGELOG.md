@@ -1,3 +1,10 @@
+## [1.1.6](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.5...v1.1.6) (2020-11-27)
+
+
+### Bug Fixes
+
+* added wait_for_ready_state param ([ba690a1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/ba690a1c95e241a51985bf5837f981180101bfcd))
+
 ## [1.1.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.4...v1.1.5) (2020-11-19)
 
 
