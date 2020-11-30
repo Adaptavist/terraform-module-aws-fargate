@@ -115,6 +115,12 @@ variable "wait_for_steady_state" {
   description = "Terraform will wait for the service to reach a steady state (like aws ecs wait services-stable) before continuing"
 }
 
+variable "health_check_grace_period" {
+  type        = number
+  default     = 0
+  description = "Number of seconds that ECS service scheduler should ignore unhealthy ELB target/container/route 53 health checks after a task enters a RUNNING state"
+}
+
 // Monitoring
 
 variable "create_connection_error_alarm" {

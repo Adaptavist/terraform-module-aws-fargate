@@ -42,6 +42,7 @@ resource aws_ecs_service "fargate" {
   cluster                            = var.ecs_cluster_arn
   launch_type                        = "FARGATE"
   platform_version                   = var.fargate_platform_version
+  health_check_grace_period_seconds  = var.health_check_grace_period
 
   network_configuration {
     subnets          = var.subnet_ids
