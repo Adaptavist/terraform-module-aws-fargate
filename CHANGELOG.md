@@ -1,3 +1,10 @@
+## [1.1.7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.6...v1.1.7) (2020-11-30)
+
+
+### Bug Fixes
+
+* add support for health_check_grace_period ([8f83362](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/8f83362c97cb5c66963dc0abb6fb7459b8972b48))
+
 ## [1.1.6](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.5...v1.1.6) (2020-11-27)
 
 
