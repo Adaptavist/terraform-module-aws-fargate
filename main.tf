@@ -10,7 +10,7 @@ module "labels" {
 
 
 resource aws_security_group "this" {
-  name_prefix = "${module.labels.id}-${var.name}-"
+  name_prefix = "${module.labels.id}-"
   vpc_id      = var.vpc_id
 
   egress {

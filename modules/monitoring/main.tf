@@ -9,7 +9,7 @@ module "slack-notification" {
   count = var.slack_webhook_url != "" ? 1 : 0
 
   source            = "Adaptavist/aws-alarms-slack/module"
-  version           = "1.9.0"
+  version           = "1.12.0"
   namespace         = var.namespace
   description       = "Slack notifications for ${var.fargate_service_name}"
   function_name     = "slack-notifications-${var.fargate_service_name}"
