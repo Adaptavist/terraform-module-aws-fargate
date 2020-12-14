@@ -1,3 +1,10 @@
+## [1.1.8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.7...v1.1.8) (2020-12-14)
+
+
+### Bug Fixes
+
+* upgraded slack notification module and fixed sg name ([f8c9a6b](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/f8c9a6b4493003b5b71858562204d0023e520be7))
+
 ## [1.1.7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.6...v1.1.7) (2020-11-30)
 
 
