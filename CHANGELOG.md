@@ -1,3 +1,10 @@
+## [1.1.9](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.8...v1.1.9) (2020-12-15)
+
+
+### Bug Fixes
+
+* added enable_slack_notifications var ([87e561f](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/87e561f6b452d0d0b1078270f120691054851084))
+
 ## [1.1.8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.7...v1.1.8) (2020-12-14)
 
 
