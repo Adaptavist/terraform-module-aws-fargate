@@ -6,7 +6,7 @@ resource "aws_sns_topic" "alarm" {
 }
 
 module "slack-notification" {
-  count = var.slack_webhook_url != "" ? 1 : 0
+  count = var.enable_slack_notifications ? 1 : 0
 
   source            = "Adaptavist/aws-alarms-slack/module"
   version           = "1.12.0"

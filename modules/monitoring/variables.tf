@@ -1,4 +1,4 @@
-variable region {
+variable "region" {
   type        = string
   description = "AWS Region the Fargate service is deployed to"
 }
@@ -7,7 +7,7 @@ variable "namespace" {
   type = string
 }
 
-variable env {
+variable "env" {
   type        = string
   description = "Environment this Fargate service belongs to. Prod should be used for production"
 }
@@ -17,12 +17,12 @@ variable "tags" {
   description = "A set of tags that will be applied to all resources created by this module"
 }
 
-variable fargate_service_name {
+variable "fargate_service_name" {
   type        = string
   description = "Fargate service name"
 }
 
-variable slack_webhook_url {
+variable "slack_webhook_url" {
   type        = string
   description = "Slack webhook URL for Cloudwatch alarm notifications"
 }
@@ -68,7 +68,7 @@ variable "alarm_data_missing_action" {
   description = "Missing data action for success responses alarm. Possible values: missing or breaching"
 }
 
-variable monit_resp_success_percentage {
+variable "monit_resp_success_percentage" {
   type        = string
   default     = "99"
   description = "What percentage of requests should be responded to with 2xx"
@@ -83,4 +83,10 @@ variable "monit_target_response_time" {
 variable "desired_count" {
   type        = number
   description = "desired number of container instances running"
+}
+
+variable "enable_slack_notifications" {
+  type        = bool
+  default     = false
+  description = "Indicates if slack notifications should be enabled or not. If true, slack_webhook_url must be provided."
 }

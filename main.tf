@@ -9,7 +9,7 @@ module "labels" {
 }
 
 
-resource aws_security_group "this" {
+resource "aws_security_group" "this" {
   name_prefix = "${module.labels.id}-"
   vpc_id      = var.vpc_id
 
@@ -33,7 +33,7 @@ resource aws_security_group "this" {
   tags = module.labels.tags
 }
 
-resource aws_ecs_service "fargate" {
+resource "aws_ecs_service" "fargate" {
   name                               = module.labels.id
   task_definition                    = var.task_definition
   desired_count                      = var.desired_count
@@ -50,7 +50,7 @@ resource aws_ecs_service "fargate" {
     security_groups  = concat(var.sg_list, [aws_security_group.this.id])
   }
 
-  dynamic load_balancer {
+  dynamic "load_balancer" {
     for_each = [for tg in toset(var.target_group_arns) : { arn = tg }]
 
     content {
@@ -78,6 +78,7 @@ module "monitoring" {
   fargate_service_name = aws_ecs_service.fargate.name
   desired_count        = var.desired_count
 
+  enable_slack_notifications        = var.enable_slack_notifications
   slack_webhook_url                 = var.slack_webhook_url
   create_connection_error_alarm     = var.create_connection_error_alarm
   create_target_response_time_alarm = var.create_target_response_time_alarm

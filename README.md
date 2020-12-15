@@ -35,6 +35,7 @@ This module creates a set of AWS resources:
 | create_success_responses_alarm       | bool    | false         |            | Set to true if success responses alarm should be created
 | alarm_data_missing_action            | string  | missing       |            | Missing data action for success responses alarm. Possible values: missing or breaching
 | alb_arn_and_target_groups_to_monitor | map     |               |            | A map representing albs and target groups that will be monitored with cloudwatch. Mandatory if any of the above alarms are to be set
+| enable_slack_notifications           | bool    | false         |            | Indicates if slack notifications should be enabled or not. If true, slack_webhook_url must be provided.
 | slack_webhook_url                    | string  |               |            | Slack webhook URL for Cloudwatch alarm notifications
 | monit_resp_success_percentage        | string  | 99            | âœ“        | What percentage of requests should be responded to with 2xx
 | monit_target_response_time           | string  | 0.5           | âœ“        | Service response time in seconds greater than or equal to

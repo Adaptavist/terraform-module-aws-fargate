@@ -13,7 +13,7 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-resource aws_ecs_cluster "this" {
+resource "aws_ecs_cluster" "this" {
   name = "test"
   tags = local.tags
 }
@@ -28,6 +28,7 @@ module "this" {
   desired_count                               = 2
   region                                      = "eu-west-1"
   slack_webhook_url                           = "slack.com/bar"
+  enable_slack_notifications                  = true
   subnet_ids                                  = [for s in data.aws_subnet.example : s.id]
   task_definition                             = ""
   vpc_id                                      = data.aws_vpc.default.id
@@ -36,17 +37,17 @@ module "this" {
   target_group_arns                           = ["arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"]
 }
 
-data aws_caller_identity "current" {}
+data "aws_caller_identity" "current" {}
 
-data aws_vpc "default" {
+data "aws_vpc" "default" {
   default = true
 }
 
-data aws_subnet_ids "this" {
+data "aws_subnet_ids" "this" {
   vpc_id = data.aws_vpc.default.id
 }
 
-data aws_subnet "example" {
+data "aws_subnet" "example" {
   for_each = data.aws_subnet_ids.this.ids
   id       = each.value
 }

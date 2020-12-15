@@ -164,13 +164,19 @@ variable "alb_and_target_groups_monitoring_dimensions" {
   description = "A map representing albs and target groups that will be monitored with cloudwatch"
 }
 
-variable slack_webhook_url {
+variable "enable_slack_notifications" {
+  type        = bool
+  default     = false
+  description = "Indicates if slack notifications should be enabled or not. If true, slack_webhook_url must be provided."
+}
+
+variable "slack_webhook_url" {
   type        = string
   default     = ""
   description = "Slack webhook URL for Cloudwatch alarm notifications"
 }
 
-variable monit_resp_success_percentage {
+variable "monit_resp_success_percentage" {
   type        = string
   default     = "99"
   description = "What percentage of requests should be responded to with 2xx"
