@@ -68,10 +68,11 @@ resource "aws_ecs_service" "fargate" {
 module "monitoring" {
   source = "./modules/monitoring"
 
-  region    = var.region
-  env       = var.stage
-  namespace = var.namespace
-  tags      = module.labels.tags
+  region         = var.region
+  env            = var.stage
+  namespace      = var.namespace
+  tags           = module.labels.tags
+  include_region = var.include_region
 
   alb_and_target_groups_monitoring_dimensions = var.alb_and_target_groups_monitoring_dimensions
 
