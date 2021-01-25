@@ -20,6 +20,12 @@ variable "tags" {
   description = "A set of tags that will be applied to all resources created by this module"
 }
 
+variable "include_region" {
+  type        = bool
+  default     = false
+  description = "If set to true the current providers region will be appended to any global AWS resources such as IAM roles"
+}
+
 variable "region" {
   type        = string
   description = "AWS Region the Fargate service is deployed to"
