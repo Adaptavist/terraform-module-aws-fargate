@@ -8,8 +8,12 @@ module "labels" {
   tags      = var.tags
 }
 
+locals {
+  ingress_sg_list = var.alb_sg_id != "" ? concat(var.ingress_sg_list, [var.alb_sg_id]) : var.ingress_sg_list
+}
 
 resource "aws_security_group" "this" {
+
   name_prefix = "${module.labels.id}-"
   vpc_id      = var.vpc_id
 
@@ -27,7 +31,7 @@ resource "aws_security_group" "this" {
     from_port       = var.port
     protocol        = "TCP"
     to_port         = var.port
-    security_groups = concat(var.ingress_sg_list, [var.alb_sg_id])
+    security_groups = local.ingress_sg_list
   }
 
   tags = module.labels.tags
