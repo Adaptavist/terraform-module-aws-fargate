@@ -1,4 +1,4 @@
-image: adaptavist/all-tools:openjdk11-latest-0.13.5
+image: adaptavist/all-tools:openjdk11-latest-0.14.2
 
 definitions:
   tests: &test
