@@ -1,3 +1,10 @@
+## [1.2.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.0...v1.2.1) (2021-01-26)
+
+
+### Bug Fixes
+
+* added error handling in case there is no alb ([75f839d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/75f839d8d203991774881bff6923cc0212cfb74c))
+
 # [1.2.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.1.9...v1.2.0) (2021-01-12)
 
 
