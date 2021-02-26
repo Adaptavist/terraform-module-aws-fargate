@@ -9,7 +9,7 @@ module "slack-notification" {
   count = var.enable_slack_notifications ? 1 : 0
 
   source            = "Adaptavist/aws-alarms-slack/module"
-  version           = "1.13.0"
+  version           = "1.13.1"
   namespace         = var.namespace
   description       = "Slack notifications for ${var.fargate_service_name}"
   function_name     = "slack-notifications-${var.fargate_service_name}"

@@ -17,29 +17,36 @@ resource "aws_security_group" "this" {
   name_prefix = "${module.labels.id}-"
   vpc_id      = var.vpc_id
 
-  egress {
-    description      = "Egress"
-    protocol         = "-1"
-    from_port        = 0
-    to_port          = 0
-    cidr_blocks      = var.sg_egress_cidr_blocks
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  ingress {
-    description     = "Load Balancer Ingress"
-    from_port       = var.port
-    protocol        = "TCP"
-    to_port         = var.port
-    security_groups = local.ingress_sg_list
-  }
-
   tags = module.labels.tags
+}
+
+resource "aws_security_group_rule" "egress" {
+  from_port         = 0
+  protocol          = "-1"
+  to_port           = 0
+  cidr_blocks       = var.sg_egress_cidr_blocks
+  ipv6_cidr_blocks  = ["::/0"]
+  type              = "egress"
+  security_group_id = aws_security_group.this.id
+}
+
+resource "aws_security_group_rule" "lb_ingress" {
+  description       = "Load Balancer Ingress"
+  from_port         = var.port
+  protocol          = "TCP"
+  to_port           = var.port
+  security_groups   = local.ingress_sg_list
+  type              = "ingress"
+  security_group_id = aws_security_group.this.id
+}
+
+data "aws_ecs_task_definition" "this" {
+  task_definition = var.task_definition
 }
 
 resource "aws_ecs_service" "fargate" {
   name                               = module.labels.id
-  task_definition                    = var.task_definition
+  task_definition                    = "${data.aws_ecs_task_definition.this.family}:${data.aws_ecs_task_definition.this.revision}"
   desired_count                      = var.desired_count
   deployment_minimum_healthy_percent = var.min_healthy_percent
   deployment_maximum_percent         = var.max_percent
@@ -66,7 +73,8 @@ resource "aws_ecs_service" "fargate" {
 
   wait_for_steady_state = var.wait_for_steady_state
 
-  tags = module.labels.tags
+  propagate_tags = "TASK_DEFINITION"
+  tags           = module.labels.tags
 }
 
 module "monitoring" {
