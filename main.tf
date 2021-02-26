@@ -31,13 +31,15 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_security_group_rule" "lb_ingress" {
-  description       = "Load Balancer Ingress"
-  from_port         = var.port
-  protocol          = "TCP"
-  to_port           = var.port
-  security_groups   = local.ingress_sg_list
-  type              = "ingress"
-  security_group_id = aws_security_group.this.id
+  for_each                 = toset(local.ingress_sg_list)
+
+  description              = "Load Balancer Ingress"
+  from_port                = var.port
+  protocol                 = "TCP"
+  to_port                  = var.port
+  source_security_group_id = each.key
+  type                     = "ingress"
+  security_group_id        = aws_security_group.this.id
 }
 
 data "aws_ecs_task_definition" "this" {
