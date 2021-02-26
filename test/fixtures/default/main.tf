@@ -25,6 +25,7 @@ resource "aws_ecs_task_definition" "this" {
   network_mode             = "awsvpc"
   cpu                      = "2048"
   memory                   = "4096"
+  tags                     = local.tags
 }
 
 resource "aws_lb_target_group" "ip-example" {
@@ -33,6 +34,7 @@ resource "aws_lb_target_group" "ip-example" {
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = data.aws_vpc.default.id
+  tags        = local.tags
 }
 
 resource "aws_lb" "test" {
@@ -40,6 +42,7 @@ resource "aws_lb" "test" {
   internal           = false
   load_balancer_type = "application"
   subnets            = data.aws_subnet_ids.this.ids
+  tags               = local.tags
 }
 
 resource "aws_lb_listener" "front_end" {
