@@ -27,13 +27,25 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_security_group_rule" "lb_ingress" {
-  for_each = toset(var.alb_sg_id != "" ? concat(var.ingress_sg_list, [var.alb_sg_id]) : var.ingress_sg_list)
+  count = length(var.ingress_sg_list)
 
   description              = "Load Balancer Ingress"
   from_port                = var.port
   protocol                 = "TCP"
   to_port                  = var.port
-  source_security_group_id = each.key
+  source_security_group_id = var.ingress_sg_list[count.index]
+  type                     = "ingress"
+  security_group_id        = aws_security_group.this.id
+}
+
+resource "aws_security_group_rule" "lb_ingress" {
+  count = var.alb_sg_id != "" ? 1 : 0
+
+  description              = "Allow from ALB"
+  from_port                = var.port
+  protocol                 = "TCP"
+  to_port                  = var.port
+  source_security_group_id = var.alb_sg_id
   type                     = "ingress"
   security_group_id        = aws_security_group.this.id
 }
