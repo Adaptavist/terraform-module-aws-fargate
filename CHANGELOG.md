@@ -1,3 +1,10 @@
+## [1.2.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.3...v1.2.4) (2021-03-01)
+
+
+### Bug Fixes
+
+* removed the use of for each ([3c46742](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/3c46742b310a4d21969d6169fd985ac2fe519bf7))
+
 ## [1.2.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.2...v1.2.3) (2021-03-01)
 
 
