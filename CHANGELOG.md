@@ -1,3 +1,10 @@
+## [1.2.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.2...v1.2.3) (2021-03-01)
+
+
+### Bug Fixes
+
+* removed the use of locals ([0ae2a1a](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/0ae2a1afcd41741ddc1de46ab557eabae6d98e7e))
+
 ## [1.2.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.1...v1.2.2) (2021-02-26)
 
 
