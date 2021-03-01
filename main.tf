@@ -8,10 +8,6 @@ module "labels" {
   tags      = var.tags
 }
 
-locals {
-  ingress_sg_list = var.alb_sg_id != "" ? concat(var.ingress_sg_list, [var.alb_sg_id]) : var.ingress_sg_list
-}
-
 resource "aws_security_group" "this" {
 
   name_prefix = "${module.labels.id}-"
@@ -31,7 +27,7 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_security_group_rule" "lb_ingress" {
-  for_each = toset(local.ingress_sg_list)
+  for_each = toset(var.alb_sg_id != "" ? concat(var.ingress_sg_list, [var.alb_sg_id]) : var.ingress_sg_list)
 
   description              = "Load Balancer Ingress"
   from_port                = var.port
