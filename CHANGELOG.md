@@ -1,3 +1,10 @@
+## [1.2.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.4...v1.2.5) (2021-03-01)
+
+
+### Bug Fixes
+
+* removed alb_sg_id as already included in ingress sg list ([acfa87d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/acfa87da671f70627406d916e59252ee6b1d05c5))
+
 ## [1.2.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.3...v1.2.4) (2021-03-01)
 
 
