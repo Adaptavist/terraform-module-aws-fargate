@@ -65,11 +65,6 @@ variable "sg_list" {
   description = "List of security groups that will be applied to the created Fargate service"
 }
 
-variable "alb_sg_id" {
-  type        = string
-  description = "The ID of your target ALBs security to allow ingress"
-}
-
 variable "target_group_arns" {
   type        = list(string)
   default     = []

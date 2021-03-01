@@ -38,18 +38,6 @@ resource "aws_security_group_rule" "ingress" {
   security_group_id        = aws_security_group.this.id
 }
 
-resource "aws_security_group_rule" "lb_ingress" {
-  count = var.alb_sg_id != "" ? 1 : 0
-
-  description              = "Allow from ALB"
-  from_port                = var.port
-  protocol                 = "TCP"
-  to_port                  = var.port
-  source_security_group_id = var.alb_sg_id
-  type                     = "ingress"
-  security_group_id        = aws_security_group.this.id
-}
-
 data "aws_ecs_task_definition" "this" {
   task_definition = var.task_definition
 }

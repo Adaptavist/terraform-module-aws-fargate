@@ -62,7 +62,6 @@ module "this" {
   stage                                       = "stg"
   name                                        = "hello-world"
   tags                                        = local.tags
-  alb_sg_id                                   = ""
   desired_count                               = 2
   region                                      = "eu-west-1"
   slack_webhook_url                           = "slack.com/bar"
