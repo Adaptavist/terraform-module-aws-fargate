@@ -1,3 +1,10 @@
+## [1.2.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.1...v1.2.2) (2021-02-26)
+
+
+### Bug Fixes
+
+* using the latest slack notification module ([36c0387](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/36c0387a16e2a6cf8d04e6cdb8b62f1cdd6b4744))
+
 ## [1.2.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.0...v1.2.1) (2021-01-26)
 
 
