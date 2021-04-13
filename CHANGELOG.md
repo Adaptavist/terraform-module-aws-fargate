@@ -1,3 +1,10 @@
+# [1.3.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.5...v1.3.0) (2021-04-13)
+
+
+### Features
+
+* added deployment controller variable ([e2e7dec](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/e2e7dec59403fe159da3f766ad6bd683414393bc))
+
 ## [1.2.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.4...v1.2.5) (2021-03-01)
 
 
