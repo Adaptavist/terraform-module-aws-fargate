@@ -73,6 +73,10 @@ resource "aws_ecs_service" "fargate" {
 
   propagate_tags = "TASK_DEFINITION"
   tags           = module.labels.tags
+
+  deployment_controller {
+    type = var.deployment_controller
+  }
 }
 
 module "monitoring" {

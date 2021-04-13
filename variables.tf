@@ -189,3 +189,7 @@ variable "monit_target_response_time" {
   description = "service response time in seconds greater than or equal to"
 }
 
+variable "deployment_controller" {
+  description = "Type of deployment controller. Valid values: CODE_DEPLOY, ECS, EXTERNAL. Default: ECS"
+  default     = "ECS"
+}
