@@ -1,6 +1,6 @@
 # AWS Fargate module
 
-This module creates a set of AWS resources: 
+This module creates a set of AWS resources:
 
 - AWS ECS Fargate Service
 - AWS Security group for the Fargate Service
@@ -8,15 +8,15 @@ This module creates a set of AWS resources:
 
 ## Variables
 
-| Name                                 | Type    | Default       | Required   | Description                                                                
-| ------------------------------------ | ------- | ------------- | ---------- | -------------------------------------------------------------------------- 
-| region                               | string  |               | âœ“        | AWS Region the Fargate service is deployed to                                      
-| vpc_id                               | string  |               | âœ“        | VPC id                                       
-| subnet_ids                           | list    |               | âœ“        | A list of subnet ids the fargate service will be deployed to                  
+| Name                                 | Type    | Default       | Required   | Description
+| ------------------------------------ | ------- | ------------- | ---------- | --------------------------------------------------------------------------
+| region                               | string  |               | âœ“        | AWS Region the Fargate service is deployed to
+| vpc_id                               | string  |               | âœ“        | VPC id
+| subnet_ids                           | list    |               | âœ“        | A list of subnet ids the fargate service will be deployed to
 | sg_egress_cidr_blocks                | list    | ["0.0.0.0/0"] |            | List of egress CIDR blocks that will be applied to the created Fargate service
 | ingress_sg_list                      | list    | []            |            | List of ingress security groups that will be applied to the created Fargate service
-| alb_sg_id                            | string  |               | âœ“        | he ID of your target ALBs security to allow ingress                            
-| port                                 | integer | 5060          |            | The port the service is available from                                                
+| alb_sg_id                            | string  |               | âœ“        | he ID of your target ALBs security to allow ingress
+| port                                 | integer | 5060          |            | The port the service is available from
 | protocol                             | string  | HTTP          |            | Protocol used by the service. options: HTTP, HTTPS
 | ecs_cluster_arn                      | string  |               | âœ“        | ECS cluster ARN
 | ecr_repo_arn                         | string  |               | âœ“        | ECR repository ARN
@@ -39,10 +39,11 @@ This module creates a set of AWS resources:
 | slack_webhook_url                    | string  |               |            | Slack webhook URL for Cloudwatch alarm notifications
 | monit_resp_success_percentage        | string  | 99            | âœ“        | What percentage of requests should be responded to with 2xx
 | monit_target_response_time           | string  | 0.5           | âœ“        | Service response time in seconds greater than or equal to
-| namespace                            | string  |               | âœ“        | Namespace used for labeling resources                  
-| name                                 | string  | fargate       |            | Name of the module / resources                         
-| stage                                | string  |               | âœ“        | What staga are the resources for? staging, production? 
-| tags                                 | map     |               | âœ“        | Map of tags to be applied to all resources 
+| namespace                            | string  |               | âœ“        | Namespace used for labeling resources
+| name                                 | string  | fargate       |            | Name of the module / resources
+| stage                                | string  |               | âœ“        | What stage are the resources for? staging, production?
+| deployment_controller                | string  | ECS           | âœ“        | Type of deployment controller. Valid values: CODE_DEPLOY, ECS, EXTERNAL.
+| tags                                 | map     |               | âœ“        | Map of tags to be applied to all resources
 
 ## Outputs
 
