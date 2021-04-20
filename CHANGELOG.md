@@ -1,3 +1,10 @@
+## [1.3.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.3.0...v1.3.1) (2021-04-20)
+
+
+### Bug Fixes
+
+* corrected sg lifecycle and updated slack module version ([b3a6fcd](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/b3a6fcd33fc160988885119ab03c5d68c344098f))
+
 # [1.3.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.2.5...v1.3.0) (2021-04-13)
 
 
