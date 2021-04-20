@@ -9,7 +9,7 @@ module "slack-notification" {
   count = var.enable_slack_notifications ? 1 : 0
 
   source            = "Adaptavist/aws-alarms-slack/module"
-  version           = "1.13.1"
+  version           = "1.14.0"
   namespace         = var.namespace
   description       = "Slack notifications for ${var.fargate_service_name}"
   function_name     = "slack-notifications-${var.fargate_service_name}"
@@ -17,6 +17,7 @@ module "slack-notification" {
   slack_webhook_url = var.slack_webhook_url
   tags              = var.tags
   include_region    = var.include_region
+  aws_region        = var.region
 }
 
 resource "aws_cloudwatch_metric_alarm" "request_count" {

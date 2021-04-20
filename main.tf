@@ -36,6 +36,10 @@ resource "aws_security_group_rule" "ingress" {
   source_security_group_id = var.ingress_sg_list[count.index]
   type                     = "ingress"
   security_group_id        = aws_security_group.this.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 data "aws_ecs_task_definition" "this" {
