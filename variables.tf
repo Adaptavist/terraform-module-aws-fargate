@@ -196,10 +196,3 @@ variable "monitoring_config" {
     // some of the defaulted properties, such as monitoring period, can be added here
   }))
 }
-
-
-
-
-
-
-
