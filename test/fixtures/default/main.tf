@@ -57,22 +57,22 @@ resource "aws_lb_listener" "front_end" {
 }
 
 module "this" {
-  source                                      = "../../.."
-  namespace                                   = "avst-tf"
-  stage                                       = "stg"
-  name                                        = "hello-world"
-  tags                                        = local.tags
-  desired_count                               = 2
-  region                                      = "eu-west-1"
-  slack_webhook_url                           = "slack.com/bar"
-  enable_slack_notifications                  = true
-  subnet_ids                                  = [for s in data.aws_subnet.example : s.id]
-  task_definition                             = aws_ecs_task_definition.this.id
-  vpc_id                                      = data.aws_vpc.default.id
-  ecs_cluster_arn                             = aws_ecs_cluster.this.arn
-  alb_and_target_groups_monitoring_dimensions = {}
-  target_group_arns                           = [aws_lb_target_group.ip-example.arn]
-  port                                        = 80
+  source                     = "../../.."
+  namespace                  = "avst-tf"
+  stage                      = "stg"
+  name                       = "hello-world"
+  tags                       = local.tags
+  desired_count              = 2
+  region                     = "eu-west-1"
+  slack_webhook_url          = "slack.com/bar"
+  enable_slack_notifications = true
+  subnet_ids                 = [for s in data.aws_subnet.example : s.id]
+  task_definition            = aws_ecs_task_definition.this.id
+  vpc_id                     = data.aws_vpc.default.id
+  ecs_cluster_arn            = aws_ecs_cluster.this.arn
+  monitoring_config          = []
+  target_group_arns          = [aws_lb_target_group.ip-example.arn]
+  port                       = 80
 }
 
 data "aws_caller_identity" "current" {}

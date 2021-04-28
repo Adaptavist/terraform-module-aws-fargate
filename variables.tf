@@ -160,11 +160,6 @@ variable "alarm_data_missing_action" {
   description = "Missing data action for success responses alarm. Possible values: missing or breaching"
 }
 
-variable "alb_and_target_groups_monitoring_dimensions" {
-  type        = map(string)
-  description = "A map representing albs and target groups that will be monitored with cloudwatch"
-}
-
 variable "enable_slack_notifications" {
   type        = bool
   default     = false
@@ -193,3 +188,18 @@ variable "deployment_controller" {
   description = "Type of deployment controller. Valid values: CODE_DEPLOY, ECS, EXTERNAL. Default: ECS"
   default     = "ECS"
 }
+
+variable "monitoring_config" {
+  type = list(object({
+    load_balancer_arn_suffix = string
+    target_group_arn_suffix  = string
+    // some of the defaulted properties, such as monitoring period, can be added here
+  }))
+}
+
+
+
+
+
+
+

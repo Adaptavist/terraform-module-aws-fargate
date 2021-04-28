@@ -21,7 +21,7 @@ module "slack-notification" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "request_count" {
-  for_each = var.create_request_count_alarm ? var.alb_and_target_groups_monitoring_dimensions : {}
+  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-num-requests"
   comparison_operator = "LessThanLowerOrGreaterThanUpperThreshold"
@@ -50,8 +50,8 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
       unit        = "Count"
 
       dimensions = {
-        LoadBalancer = each.key
-        TargetGroup  = each.value
+        LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+        TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
       }
     }
   }
@@ -59,7 +59,7 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "success_responses" {
-  for_each = var.create_success_responses_alarm ? var.alb_and_target_groups_monitoring_dimensions : {}
+  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-success-responses"
   comparison_operator = "LessThanThreshold"
@@ -87,8 +87,8 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
       unit        = "Count"
 
       dimensions = {
-        LoadBalancer = each.key
-        TargetGroup  = each.value
+        LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+        TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
       }
     }
   }
@@ -104,8 +104,8 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
       unit        = "Count"
 
       dimensions = {
-        LoadBalancer = each.key
-        TargetGroup  = each.value
+        LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+        TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
       }
     }
   }
@@ -113,7 +113,7 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "connection_error_count" {
-  for_each = var.create_connection_error_alarm ? var.alb_and_target_groups_monitoring_dimensions : {}
+  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-conx-error-count"
   statistic           = "Sum"
@@ -127,14 +127,14 @@ resource "aws_cloudwatch_metric_alarm" "connection_error_count" {
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
 
   dimensions = {
-    LoadBalancer = each.key
-    TargetGroup  = each.value
+    LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+    TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
   }
   tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "target_response_time" {
-  for_each = var.create_target_response_time_alarm ? var.alb_and_target_groups_monitoring_dimensions : {}
+  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-target-resp-time"
   extended_statistic  = "p95"
@@ -149,14 +149,14 @@ resource "aws_cloudwatch_metric_alarm" "target_response_time" {
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
 
   dimensions = {
-    LoadBalancer = each.key
-    TargetGroup  = each.value
+    LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+    TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
   }
   tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
-  for_each = var.create_unhealthy_host_count_alarm ? var.alb_and_target_groups_monitoring_dimensions : {}
+  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-unhealthy-hosts"
   statistic           = "Maximum"
@@ -171,8 +171,8 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
 
   dimensions = {
-    LoadBalancer = each.key
-    TargetGroup  = each.value
+    LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+    TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
   }
   tags = var.tags
 }
