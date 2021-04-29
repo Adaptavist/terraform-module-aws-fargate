@@ -92,7 +92,7 @@ module "monitoring" {
   tags           = module.labels.tags
   include_region = var.include_region
 
-  alb_and_target_groups_monitoring_dimensions = var.alb_and_target_groups_monitoring_dimensions
+  monitoring_config = var.monitoring_config
 
   fargate_service_name = aws_ecs_service.fargate.name
   desired_count        = var.desired_count
