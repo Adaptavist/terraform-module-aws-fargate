@@ -1,3 +1,10 @@
+# [1.4.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.3.1...v1.4.0) (2021-04-29)
+
+
+### Features
+
+* modified the interface to allow for multiple monitoring dimensions ([9ead922](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/9ead9222dee22f5a03de3902b674bf267b610d2d))
+
 ## [1.3.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.3.0...v1.3.1) (2021-04-20)
 
 
