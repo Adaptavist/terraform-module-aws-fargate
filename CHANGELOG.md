@@ -1,3 +1,10 @@
+## [1.4.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.4.0...v1.4.1) (2021-05-20)
+
+
+### Bug Fixes
+
+* added checkov and semantic release image ([55ecbfd](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/55ecbfd4a25bb2227e820a10bb9282628176b63a))
+
 # [1.4.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.3.1...v1.4.0) (2021-04-29)
 
 
