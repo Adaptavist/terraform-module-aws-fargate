@@ -32,11 +32,6 @@ variable "slack_webhook_url" {
   description = "Slack webhook URL for Cloudwatch alarm notifications"
 }
 
-variable "alb_and_target_groups_monitoring_dimensions" {
-  type        = map(string)
-  description = "A map representing alb references in the format /loadbalancer/{name} and target group suffixes that will be monitored with cloudwatch"
-}
-
 variable "create_connection_error_alarm" {
   type        = bool
   default     = false
@@ -94,4 +89,12 @@ variable "enable_slack_notifications" {
   type        = bool
   default     = false
   description = "Indicates if slack notifications should be enabled or not. If true, slack_webhook_url must be provided."
+}
+
+variable "monitoring_config" {
+  type = list(object({
+    load_balancer_arn_suffix = string
+    target_group_arn_suffix  = string
+    // some of the defaulted properties, such as monitoring period, can be added here
+  }))
 }
