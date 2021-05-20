@@ -2,6 +2,8 @@ resource "aws_sns_topic" "alarm" {
   name            = "${var.fargate_service_name}-alarms-topic"
   delivery_policy = file("${path.module}/aws_sns_topic.delivery_policy.json")
 
+  kms_master_key_id = "alias/aws/sns"
+
   tags = var.tags
 }
 
