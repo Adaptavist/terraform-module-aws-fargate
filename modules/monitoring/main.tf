@@ -61,7 +61,7 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "success_responses" {
-  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
+  count = var.create_success_responses_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-success-responses"
   comparison_operator = "LessThanThreshold"
@@ -115,7 +115,7 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "connection_error_count" {
-  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
+  count = var.create_connection_error_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-conx-error-count"
   statistic           = "Sum"
@@ -136,7 +136,7 @@ resource "aws_cloudwatch_metric_alarm" "connection_error_count" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "target_response_time" {
-  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
+  count = var.create_target_response_time_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-target-resp-time"
   extended_statistic  = "p95"
@@ -158,7 +158,7 @@ resource "aws_cloudwatch_metric_alarm" "target_response_time" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
-  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
+  count = var.create_unhealthy_host_count_alarm ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-unhealthy-hosts"
   statistic           = "Maximum"
