@@ -1,3 +1,10 @@
+## [1.4.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.4.1...v1.4.2) (2021-07-28)
+
+
+### Bug Fixes
+
+* Use correct booleans for alarms ([a7f66db](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/a7f66dba54e2f17a45eaab414662461aedb27b0d))
+
 ## [1.4.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.4.0...v1.4.1) (2021-05-20)
 
 
