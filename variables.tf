@@ -196,3 +196,9 @@ variable "monitoring_config" {
     // some of the defaulted properties, such as monitoring period, can be added here
   }))
 }
+
+variable "enable_codedeploy_control" {
+  type = bool
+  default = false
+  description = "Setting this variable to true configures Fargate service terraform lifecycle to ignore changes done to the task definition and load balancer config. These will be controlled by code deploy."
+}
