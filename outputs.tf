@@ -1,5 +1,5 @@
 output "fargate_service_name" {
-  value = var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name
+  value = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
 }
 
 output "security_group_id" {

@@ -137,7 +137,7 @@ module "monitoring" {
 
   monitoring_config = var.monitoring_config
 
-  fargate_service_name = var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name
+  fargate_service_name = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
   desired_count        = var.desired_count
 
   enable_slack_notifications        = var.enable_slack_notifications
