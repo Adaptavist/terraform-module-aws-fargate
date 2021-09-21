@@ -1,3 +1,10 @@
+## [1.5.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.5.1...v1.5.2) (2021-09-21)
+
+
+### Bug Fixes
+
+* dealing with list values ([d0ba33d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/d0ba33d441a9188f7de862d911f12f640e60e8e4))
+
 ## [1.5.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.5.0...v1.5.1) (2021-09-21)
 
 
