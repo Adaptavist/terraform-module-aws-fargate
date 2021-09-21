@@ -47,6 +47,7 @@ data "aws_ecs_task_definition" "this" {
 }
 
 resource "aws_ecs_service" "fargate" {
+  count = var.enable_codedeploy_control ? 0 : 1
   name                               = module.labels.id
   task_definition                    = "${data.aws_ecs_task_definition.this.family}:${data.aws_ecs_task_definition.this.revision}"
   desired_count                      = var.desired_count
@@ -83,6 +84,48 @@ resource "aws_ecs_service" "fargate" {
   }
 }
 
+resource "aws_ecs_service" "fargate-codedeploy" {
+  count = var.enable_codedeploy_control ? 1 : 0
+  name                               = module.labels.id
+  task_definition                    = "${data.aws_ecs_task_definition.this.family}:${data.aws_ecs_task_definition.this.revision}"
+  desired_count                      = var.desired_count
+  deployment_minimum_healthy_percent = var.min_healthy_percent
+  deployment_maximum_percent         = var.max_percent
+  cluster                            = var.ecs_cluster_arn
+  launch_type                        = "FARGATE"
+  platform_version                   = var.fargate_platform_version
+  health_check_grace_period_seconds  = var.health_check_grace_period
+
+  network_configuration {
+    subnets          = var.subnet_ids
+    assign_public_ip = var.assign_public_ip
+    security_groups  = concat(var.sg_list, [aws_security_group.this.id])
+  }
+
+  dynamic "load_balancer" {
+    for_each = [for tg in toset(var.target_group_arns) : { arn = tg }]
+
+    content {
+      target_group_arn = load_balancer.value.arn
+      container_name   = var.name
+      container_port   = var.port
+    }
+  }
+
+  wait_for_steady_state = var.wait_for_steady_state
+
+  propagate_tags = "TASK_DEFINITION"
+  tags           = module.labels.tags
+
+  deployment_controller {
+    type = var.deployment_controller
+  }
+
+  lifecycle {
+    ignore_changes = [task_definition, load_balancer]
+  }
+}
+
 module "monitoring" {
   source = "./modules/monitoring"
 
@@ -94,7 +137,7 @@ module "monitoring" {
 
   monitoring_config = var.monitoring_config
 
-  fargate_service_name = aws_ecs_service.fargate.name
+  fargate_service_name = var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.name : aws_ecs_service.fargate.name
   desired_count        = var.desired_count
 
   enable_slack_notifications        = var.enable_slack_notifications
