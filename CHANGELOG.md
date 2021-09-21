@@ -1,3 +1,10 @@
+## [1.5.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.5.0...v1.5.1) (2021-09-21)
+
+
+### Bug Fixes
+
+* dealing with count values ([86da8f7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/86da8f7ebda14dd1653abacda5745e4b390b8bbb))
+
 # [1.5.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.4.2...v1.5.0) (2021-09-21)
 
 
