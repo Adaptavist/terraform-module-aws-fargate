@@ -1,3 +1,10 @@
+# [1.5.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.4.2...v1.5.0) (2021-09-21)
+
+
+### Features
+
+* optional code deploy management of the task definition and the lb config ([6a07f30](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/6a07f30e10e125f0140039a1f3b8f107073f4941))
+
 ## [1.4.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.4.1...v1.4.2) (2021-07-28)
 
 
