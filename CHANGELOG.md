@@ -1,3 +1,10 @@
+## [1.6.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.6.0...v1.6.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* added missing var ([75e4fef](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/75e4fef9a7c957cf120b04951c09c4b99eb8b9ec))
+
 # [1.6.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.5.2...v1.6.0) (2021-10-08)
 
 
