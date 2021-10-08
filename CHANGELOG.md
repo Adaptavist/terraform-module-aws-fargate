@@ -1,3 +1,10 @@
+# [1.6.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.5.2...v1.6.0) (2021-10-08)
+
+
+### Features
+
+* updated labels module ([d13724b](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/d13724b35bf8a5754dece35aebba0a71d3b76e31))
+
 ## [1.5.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.5.1...v1.5.2) (2021-09-21)
 
 
