@@ -1,3 +1,10 @@
+# [1.7.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.6.1...v1.7.0) (2021-10-08)
+
+
+### Features
+
+* updating alarms module ([ac0684d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/ac0684d7187404b8119dfc7572b672f9602103a3))
+
 ## [1.6.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.6.0...v1.6.1) (2021-10-08)
 
 
