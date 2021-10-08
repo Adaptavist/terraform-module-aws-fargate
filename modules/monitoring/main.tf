@@ -20,6 +20,7 @@ module "slack-notification" {
   tags              = var.tags
   include_region    = var.include_region
   aws_region        = var.region
+  display_service_name = var.fargate_service_name
 }
 
 resource "aws_cloudwatch_metric_alarm" "request_count" {
