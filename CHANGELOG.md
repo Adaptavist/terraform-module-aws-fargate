@@ -1,3 +1,10 @@
+# [1.8.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.7.0...v1.8.0) (2021-11-03)
+
+
+### Features
+
+*  autoscaling ([d71bf55](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/d71bf5579fea77b6371ee674cc1484b825989b5b))
+
 # [1.7.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.6.1...v1.7.0) (2021-10-08)
 
 
