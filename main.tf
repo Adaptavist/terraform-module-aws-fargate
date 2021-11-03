@@ -47,45 +47,7 @@ data "aws_ecs_task_definition" "this" {
 }
 
 resource "aws_ecs_service" "fargate" {
-  count = var.enable_codedeploy_control ? 0 : 1
-  name                               = module.labels.id
-  task_definition                    = "${data.aws_ecs_task_definition.this.family}:${data.aws_ecs_task_definition.this.revision}"
-  desired_count                      = var.desired_count
-  deployment_minimum_healthy_percent = var.min_healthy_percent
-  deployment_maximum_percent         = var.max_percent
-  cluster                            = var.ecs_cluster_arn
-  launch_type                        = "FARGATE"
-  platform_version                   = var.fargate_platform_version
-  health_check_grace_period_seconds  = var.health_check_grace_period
-
-  network_configuration {
-    subnets          = var.subnet_ids
-    assign_public_ip = var.assign_public_ip
-    security_groups  = concat(var.sg_list, [aws_security_group.this.id])
-  }
-
-  dynamic "load_balancer" {
-    for_each = [for tg in toset(var.target_group_arns) : { arn = tg }]
-
-    content {
-      target_group_arn = load_balancer.value.arn
-      container_name   = var.name
-      container_port   = var.port
-    }
-  }
-
-  wait_for_steady_state = var.wait_for_steady_state
-
-  propagate_tags = "TASK_DEFINITION"
-  tags           = module.labels.tags
-
-  deployment_controller {
-    type = var.deployment_controller
-  }
-}
-
-resource "aws_ecs_service" "fargate-codedeploy" {
-  count = var.enable_codedeploy_control ? 1 : 0
+  count                              = var.enable_codedeploy_control ? 0 : 1
   name                               = module.labels.id
   task_definition                    = "${data.aws_ecs_task_definition.this.family}:${data.aws_ecs_task_definition.this.revision}"
   desired_count                      = var.desired_count
@@ -122,7 +84,49 @@ resource "aws_ecs_service" "fargate-codedeploy" {
   }
 
   lifecycle {
-    ignore_changes = [task_definition, load_balancer]
+    ignore_changes = [desired_count]
+  }
+}
+
+resource "aws_ecs_service" "fargate-codedeploy" {
+  count                              = var.enable_codedeploy_control ? 1 : 0
+  name                               = module.labels.id
+  task_definition                    = "${data.aws_ecs_task_definition.this.family}:${data.aws_ecs_task_definition.this.revision}"
+  desired_count                      = var.desired_count
+  deployment_minimum_healthy_percent = var.min_healthy_percent
+  deployment_maximum_percent         = var.max_percent
+  cluster                            = var.ecs_cluster_arn
+  launch_type                        = "FARGATE"
+  platform_version                   = var.fargate_platform_version
+  health_check_grace_period_seconds  = var.health_check_grace_period
+
+  network_configuration {
+    subnets          = var.subnet_ids
+    assign_public_ip = var.assign_public_ip
+    security_groups  = concat(var.sg_list, [aws_security_group.this.id])
+  }
+
+  dynamic "load_balancer" {
+    for_each = [for tg in toset(var.target_group_arns) : { arn = tg }]
+
+    content {
+      target_group_arn = load_balancer.value.arn
+      container_name   = var.name
+      container_port   = var.port
+    }
+  }
+
+  wait_for_steady_state = var.wait_for_steady_state
+
+  propagate_tags = "TASK_DEFINITION"
+  tags           = module.labels.tags
+
+  deployment_controller {
+    type = var.deployment_controller
+  }
+
+  lifecycle {
+    ignore_changes = [task_definition, load_balancer, desired_count]
   }
 }
 
@@ -150,4 +154,23 @@ module "monitoring" {
   alarm_data_missing_action         = var.alarm_data_missing_action
   monit_resp_success_percentage     = var.monit_resp_success_percentage
   monit_target_response_time        = var.monit_target_response_time
+}
+
+module "autoscaling" {
+  source = "./modules/autoscaling"
+
+  cpu_utilization_high_period       = var.cpu_utilization_high_period
+  cpu_utilization_high_threshold    = var.cpu_utilization_high_threshold
+  cpu_utilization_low_period        = var.cpu_utilization_low_period
+  cpu_utilization_low_threshold     = var.cpu_utilization_low_threshold
+  ecs_cluster_name                  = var.ecs_cluster_name
+  max_count                         = var.enable_autoscaling ? var.max_count : var.desired_count
+  memory_utilization_high_period    = var.memory_utilization_high_period
+  memory_utilization_high_threshold = var.memory_utilization_high_threshold
+  memory_utilization_low_period     = var.memory_utilization_low_period
+  memory_utilization_low_threshold  = var.memory_utilization_low_threshold
+  min_count                         = var.enable_autoscaling ? var.min_count : var.desired_count
+  service_name                      = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
+  slack_topic_arn                   = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
+  tags                              = module.labels.tags
 }
