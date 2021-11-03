@@ -1,3 +1,10 @@
+## [1.8.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.0...v1.8.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* fixed a few syntax errors ([de88732](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/de887326f6f600b0d06e21e2b5268ad8a1e7f7c2))
+
 # [1.8.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.7.0...v1.8.0) (2021-11-03)
 
 
