@@ -82,6 +82,10 @@ resource "aws_ecs_service" "fargate" {
   deployment_controller {
     type = var.deployment_controller
   }
+
+  lifecycle {
+    ignore_changes = [desired_count]
+  }
 }
 
 resource "aws_ecs_service" "fargate-codedeploy" {
@@ -122,7 +126,7 @@ resource "aws_ecs_service" "fargate-codedeploy" {
   }
 
   lifecycle {
-    ignore_changes = [task_definition, load_balancer]
+    ignore_changes = [task_definition, load_balancer, desired_count]
   }
 }
 
@@ -150,4 +154,23 @@ module "monitoring" {
   alarm_data_missing_action         = var.alarm_data_missing_action
   monit_resp_success_percentage     = var.monit_resp_success_percentage
   monit_target_response_time        = var.monit_target_response_time
+}
+
+module "autoscaling" {
+  source = "./modules/autoscaling"
+
+  cpu_utilization_high_period       = var.cpu_utilization_high_period
+  cpu_utilization_high_threshold    = var.cpu_utilization_high_threshold
+  cpu_utilization_low_period        = var.cpu_utilization_low_period
+  cpu_utilization_low_threshold     = var.cpu_utilization_low_threshold
+  ecs_cluster_name                  = var.ecs_cluster_name
+  max_count                         = var.enable_autoscaling ? var.max_count : var.desired_count
+  memory_utilization_high_period    = var.memory_utilization_high_period
+  memory_utilization_high_threshold = var.memory_utilization_high_threshold
+  memory_utilization_low_period     = var.memory_utilization_low_period
+  memory_utilization_low_threshold  = var.memory_utilization_low_threshold
+  min_count                         = var.enable_autoscaling ? var.min_count : var.desired_count
+  service_name                      = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
+  slack_topic_arn                   = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
+  tags                              = module.labels.tags
 }
