@@ -14,8 +14,6 @@ Autoscaling resources have been configured using [Cloudposse `ecs-cloudwatch-aut
 Both scaling up and down are configured to make adjustments by adding or removing a single tasks. </p>
 Scaling-up cool down period is 1 minute while scaling-down cool down period is 5 minutes.
 
-
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
