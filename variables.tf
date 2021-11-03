@@ -198,7 +198,80 @@ variable "monitoring_config" {
 }
 
 variable "enable_codedeploy_control" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Setting this variable to true configures Fargate service terraform lifecycle to ignore changes done to the task definition and load balancer config. These will be controlled by code deploy."
+}
+
+/** Autoscaling **/
+
+variable "enable_autoscaling" {
+  type        = bool
+  default     = false
+  description = "Indicate if autoscaling should be enabled or not"
+}
+
+variable "ecs_cluster_name" {
+  type        = string
+  description = "Name of the ECS cluster"
+}
+
+variable "min_count" {
+  type        = number
+  default     = 1
+  description = "Minimum number of tasks in the service, used only when autoscaling is enabled"
+}
+
+variable "max_count" {
+  type        = number
+  default     = 1
+  description = "Maximum number of tasks in the service, used only when autoscaling is enabled"
+}
+
+variable "memory_utilization_low_period" {
+  type        = number
+  default     = 300
+  description = "Duration of the monitoring period"
+}
+
+variable "memory_utilization_low_threshold" {
+  type        = number
+  default     = 20
+  description = "Low memory threshold"
+}
+
+variable "memory_utilization_high_period" {
+  type        = number
+  default     = 300
+  description = "Duration of the monitoring period"
+}
+
+variable "memory_utilization_high_threshold" {
+  type        = number
+  default     = 60
+  description = "High memory threshold"
+}
+
+variable "cpu_utilization_low_period" {
+  type        = number
+  default     = 300
+  description = "Duration of the monitoring period"
+}
+
+variable "cpu_utilization_low_threshold" {
+  type        = number
+  default     = 20
+  description = "Low CPU threshold"
+}
+
+variable "cpu_utilization_high_period" {
+  type        = number
+  default     = 300
+  description = "Duration of the monitoring period"
+}
+
+variable "cpu_utilization_high_threshold" {
+  type        = number
+  default     = 60
+  description = "High CPU threshold"
 }

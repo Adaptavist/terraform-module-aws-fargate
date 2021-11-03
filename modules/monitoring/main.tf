@@ -10,16 +10,16 @@ resource "aws_sns_topic" "alarm" {
 module "slack-notification" {
   count = var.enable_slack_notifications ? 1 : 0
 
-  source            = "Adaptavist/aws-alarms-slack/module"
-  version           = "2.2.0"
-  namespace         = var.namespace
-  description       = "Slack notifications for ${var.fargate_service_name}"
-  function_name     = "slack-notifications-${var.fargate_service_name}"
-  stage             = var.env
-  slack_webhook_url = var.slack_webhook_url
-  tags              = var.tags
-  include_region    = var.include_region
-  aws_region        = var.region
+  source               = "Adaptavist/aws-alarms-slack/module"
+  version              = "2.2.0"
+  namespace            = var.namespace
+  description          = "Slack notifications for ${var.fargate_service_name}"
+  function_name        = "slack-notifications-${var.fargate_service_name}"
+  stage                = var.env
+  slack_webhook_url    = var.slack_webhook_url
+  tags                 = var.tags
+  include_region       = var.include_region
+  aws_region           = var.region
   display_service_name = var.fargate_service_name
 }
 
