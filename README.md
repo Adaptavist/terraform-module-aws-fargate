@@ -8,6 +8,14 @@ This module creates a set of AWS resources:
 - A set of autoscaling resources
 - If autoscaling isn't enabled, desires count will match min and max count
 
+### Autoscaling
+The autoscaling is triggered by a set of cloudwatch alarms that monitor CPU and memory. Monitoring period and thresholds for each alarm are configurable.
+Autoscaling resources have been configured using [Cloudposse `ecs-cloudwatch-autoscaling`](https://github.com/cloudposse/terraform-aws-ecs-cloudwatch-autoscaling) module</p>
+Both scaling up and down are configured to make adjustments by adding or removing a single tasks. </p>
+Scaling-up cool down period is 1 minute while scaling-down cool down period is 5 minutes.
+
+
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
