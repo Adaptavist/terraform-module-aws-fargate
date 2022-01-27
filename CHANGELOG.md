@@ -1,3 +1,10 @@
+## [1.8.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.1...v1.8.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* switching to use a toset for ingress rules ([3f07a8c](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/3f07a8cbf96d84e84149216d024dfc202f9fb294))
+
 ## [1.8.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.0...v1.8.1) (2021-11-03)
 
 
