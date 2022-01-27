@@ -27,13 +27,13 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_security_group_rule" "ingress" {
-  count = length(var.ingress_sg_list)
+  for_each = toset(var.ingress_sg_list)
 
   description              = "Load Balancer Ingress"
   from_port                = var.port
   protocol                 = "TCP"
   to_port                  = var.port
-  source_security_group_id = var.ingress_sg_list[count.index]
+  source_security_group_id = each.value
   type                     = "ingress"
   security_group_id        = aws_security_group.this.id
 
