@@ -1,3 +1,10 @@
+## [1.8.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.2...v1.8.3) (2022-02-22)
+
+
+### Bug Fixes
+
+* Trigger versioning for removal of ok_actions slack topic ([d0b6a0c](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/d0b6a0ce5a2718813d157079bdbfad3445aeee66))
+
 ## [1.8.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.1...v1.8.2) (2022-01-27)
 
 
