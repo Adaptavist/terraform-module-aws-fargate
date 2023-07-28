@@ -33,6 +33,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
   alarm_name          = "${var.service_name}-cpu-utilisation-low"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = 1
+  count               = var.low_cpu_alarm_enabled ? 1 : 0
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = var.cpu_utilization_low_period

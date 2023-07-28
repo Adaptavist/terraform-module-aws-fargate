@@ -275,3 +275,8 @@ variable "cpu_utilization_high_threshold" {
   default     = 60
   description = "High CPU threshold"
 }
+
+variable "low_cpu_alarm_enabled" {
+  type        = bool
+  description = "Indicates if the low cpu alarm is enabled"
+}

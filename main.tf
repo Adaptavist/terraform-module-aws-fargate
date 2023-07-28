@@ -172,5 +172,6 @@ module "autoscaling" {
   min_count                         = var.enable_autoscaling ? var.min_count : var.desired_count
   service_name                      = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
   slack_topic_arn                   = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
+  low_cpu_alarm_enabled             = var.low_cpu_alarm_enabled
   tags                              = module.labels.tags
 }

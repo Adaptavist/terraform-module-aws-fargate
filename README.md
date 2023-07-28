@@ -65,6 +65,7 @@ Scaling-up cool down period is 1 minute while scaling-down cool down period is 5
 | task\_definition | The family and revision (family:revision) or full ARN of the task definition that you want to run in your service | `string` | n/a | yes |
 | vpc\_id | VPC Id | `string` | n/a | yes |
 | wait\_for\_steady\_state | Terraform will wait for the service to reach a steady state (like aws ecs wait services-stable) before continuing | `bool` | `false` | no |
+| low\_cpu\_alarm\_enabled | "Indicates if the low cpu alarm is enabled  | `bool` | `true` | yes | 
 
 ## Outputs
 

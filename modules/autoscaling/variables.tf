@@ -67,3 +67,9 @@ variable "slack_topic_arn" {
   type        = string
   description = "SNS topic ARN for Slack notifications"
 }
+
+variable "low_cpu_alarm_enabled" {
+  type        = bool
+  default     = true
+  description = "Indicates if the low cpu alarm is enabled"
+}
