@@ -75,3 +75,14 @@ Scaling-up cool down period is 1 minute while scaling-down cool down period is 5
 | security\_group\_id | n/a |
 | sns\_alarm\_topic\_arn | n/a |
 | sns\_slack\_notification\_topic\_arn | n/a |
+
+
+## Verify Module changes locally. 
+
+In order to validate any changes in this repo locally.
+
+1. Push your code up to a brach on BitBucket. 
+2. Clone the sr-fargate-module repository. 
+3. in the sr-fargate-module repository open the *main.tf* file 
+4. Navigate to line 198 and change the *source* property for the *module "fargate-service"* to point to your branch by changing the value of the *ref=* part of the url to be like *ref=BranchName*. 
+5. Pull the latest terraform code from the branch by running the command of *terraform init*. 
