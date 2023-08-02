@@ -1,3 +1,10 @@
+# [1.9.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.3...v1.9.0) (2023-08-02)
+
+
+### Features
+
+* Upgrade slack notifications module to support later node runtime ([08e8183](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/08e81831fc90a3f99ae87d33e1f8950d7a464552))
+
 ## [1.8.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.2...v1.8.3) (2022-02-22)
 
 
