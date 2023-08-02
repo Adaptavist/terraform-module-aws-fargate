@@ -1,3 +1,10 @@
+## [1.9.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.0...v1.9.1) (2023-08-02)
+
+
+### Bug Fixes
+
+* empty commit to force rerelease to github ([9eed4cf](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/9eed4cf6c756d2e0423c6d0aa6199735882fe463))
+
 # [1.9.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.8.3...v1.9.0) (2023-08-02)
 
 
