@@ -86,3 +86,4 @@ In order to validate any changes in this repo locally.
 3. in the sr-fargate-module repository open the *main.tf* file 
 4. Navigate to line 198 and change the *source* property for the *module "fargate-service"* to point to your branch by changing the value of the *ref=* part of the url to be like *ref=BranchName*. 
 5. Pull the latest terraform code from the branch by running the command of *terraform init*. 
+
