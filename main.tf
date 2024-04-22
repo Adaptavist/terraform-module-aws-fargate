@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_security_group_rule" "ingress" {
-  for_each = toset(var.ingress_sg_list)
+  for_each = nonsensitive(toset(var.ingress_sg_list))
 
   description              = "Load Balancer Ingress"
   from_port                = var.port
