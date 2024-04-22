@@ -1,3 +1,10 @@
+## [1.9.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.2...v1.9.3) (2024-04-22)
+
+
+### Bug Fixes
+
+* using nonsensitive for for_each ([554d5bf](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/554d5bf98457ef815586d8aa52ee091672b202c6))
+
 ## [1.9.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.1...v1.9.2) (2024-04-10)
 
 
