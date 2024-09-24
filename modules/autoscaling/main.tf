@@ -1,6 +1,6 @@
 module "ecs_cloudwatch_autoscaling_cpu" {
   source  = "cloudposse/ecs-cloudwatch-autoscaling/aws"
-  version = "0.7.3"
+  version = "0.7.5"
 
   name                  = var.service_name
   attributes            = ["cpu"]
@@ -19,7 +19,7 @@ module "ecs_cloudwatch_autoscaling_cpu" {
 
 module "ecs_cloudwatch_autoscaling_memory" {
   source  = "cloudposse/ecs-cloudwatch-autoscaling/aws"
-  version = "0.7.3"
+  version = "0.7.5"
 
   name                  = var.service_name
   attributes            = ["memory"]
