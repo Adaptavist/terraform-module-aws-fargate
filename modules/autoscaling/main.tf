@@ -34,4 +34,6 @@ module "ecs_cloudwatch_autoscaling_memory" {
   scale_down_cooldown   = 300
 
   tags = var.tags
+
+  depends_on = [module.ecs_cloudwatch_autoscaling_cpu]
 }
