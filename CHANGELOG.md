@@ -1,3 +1,10 @@
+## [1.9.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.3...v1.9.4) (2024-09-26)
+
+
+### Bug Fixes
+
+* concurrent update error for CPU & mem target ([336960a](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/336960af017e23b34966fbeac414b950d8b8e528))
+
 ## [1.9.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.2...v1.9.3) (2024-04-22)
 
 
