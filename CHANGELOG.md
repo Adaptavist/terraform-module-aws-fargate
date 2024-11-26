@@ -1,3 +1,10 @@
+## [1.9.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.4...v1.9.5) (2024-11-26)
+
+
+### Bug Fixes
+
+* checkov fixes ([336949e](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/336949e4bd38878df67ca864c43bc57cfce9cead))
+
 ## [1.9.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.3...v1.9.4) (2024-09-26)
 
 
