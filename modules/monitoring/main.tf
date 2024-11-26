@@ -10,8 +10,7 @@ resource "aws_sns_topic" "alarm" {
 module "slack-notification" {
   count = var.enable_slack_notifications ? 1 : 0
 
-  source               = "Adaptavist/aws-alarms-slack/module"
-  version              = "2.2.4"
+  source               = "git::https://github.com/Adaptavist/terraform-module-aws-alarms-slack.git?ref=d13b7aa62a47b1dfff564fbb916aefdc7c20889b" # <- version 2.2.8
   namespace            = var.namespace
   description          = "Slack notifications for ${var.fargate_service_name}"
   function_name        = "slack-notifications-${var.fargate_service_name}"

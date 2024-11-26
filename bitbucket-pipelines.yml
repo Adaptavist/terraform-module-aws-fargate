@@ -15,8 +15,8 @@ definitions:
 
   scripts:
     - &checkov >
-      checkov --quiet --compact -s -d . -o github_failed_only > compliance-issues.md &&
-      checkov --quiet --compact -s -d .
+      checkov --quiet --compact -s -d . --download-external-modules true -o github_failed_only > compliance-issues.md &&
+      checkov --quiet --compact -s -d . --download-external-modules true
 
 pipelines:
   default:

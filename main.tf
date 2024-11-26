@@ -1,6 +1,5 @@
 module "labels" {
-  source  = "cloudposse/label/null"
-  version = "0.25.0"
+  source = "git::https://github.com/cloudposse/terraform-null-label.git?ref=488ab91e34a24a86957e397d9f7262ec5925586a" # <- version 0.25.0
 
   namespace = var.namespace
   stage     = var.stage
@@ -9,7 +8,7 @@ module "labels" {
 }
 
 resource "aws_security_group" "this" {
-
+  description = "vpc security group"
   name_prefix = "${module.labels.id}-"
   vpc_id      = var.vpc_id
 
@@ -17,6 +16,7 @@ resource "aws_security_group" "this" {
 }
 
 resource "aws_security_group_rule" "egress" {
+  description       = "Allow egress route"
   from_port         = 0
   protocol          = "-1"
   to_port           = 0

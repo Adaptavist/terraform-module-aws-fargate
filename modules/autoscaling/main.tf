@@ -1,6 +1,5 @@
 module "ecs_cloudwatch_autoscaling_cpu" {
-  source  = "cloudposse/ecs-cloudwatch-autoscaling/aws"
-  version = "0.7.5"
+  source = "git::https://github.com/cloudposse/terraform-aws-ecs-cloudwatch-autoscaling.git?ref=b8d39a739e9dcf28f29b3c152b6dba29e8718d20" # <- version 0.7.5
 
   name                  = var.service_name
   attributes            = ["cpu"]
@@ -18,8 +17,7 @@ module "ecs_cloudwatch_autoscaling_cpu" {
 }
 
 module "ecs_cloudwatch_autoscaling_memory" {
-  source  = "cloudposse/ecs-cloudwatch-autoscaling/aws"
-  version = "0.7.5"
+  source = "git::https://github.com/cloudposse/terraform-aws-ecs-cloudwatch-autoscaling.git?ref=b8d39a739e9dcf28f29b3c152b6dba29e8718d20" # <- version 0.7.5
 
   name                  = var.service_name
   attributes            = ["memory"]
