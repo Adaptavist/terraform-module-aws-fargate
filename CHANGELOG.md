@@ -1,3 +1,10 @@
+## [1.9.6](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.5...v1.9.6) (2024-12-04)
+
+
+### Bug Fixes
+
+* lambda signing profile name ([30b84e2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/30b84e2051417b0a8f4f5279b75c994e4a9df496))
+
 ## [1.9.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.4...v1.9.5) (2024-11-26)
 
 
