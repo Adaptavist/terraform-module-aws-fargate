@@ -8,7 +8,7 @@ module "labels" {
 }
 
 resource "aws_security_group" "this" {
-  description = "vpc security group"
+  #checkov:skip=CKV_AWS_23:security group description forces re-creation.
   name_prefix = "${module.labels.id}-"
   vpc_id      = var.vpc_id
 
@@ -16,7 +16,7 @@ resource "aws_security_group" "this" {
 }
 
 resource "aws_security_group_rule" "egress" {
-  description       = "Allow egress route"
+  #checkov:skip=CKV_AWS_23:security group description forces re-creation.
   from_port         = 0
   protocol          = "-1"
   to_port           = 0
