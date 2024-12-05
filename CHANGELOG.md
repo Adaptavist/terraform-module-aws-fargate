@@ -1,3 +1,10 @@
+## [1.9.7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.6...v1.9.7) (2024-12-05)
+
+
+### Bug Fixes
+
+* revert sg descriptions ([264df66](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/264df66e9e0daf89490681a56babf12cb555852c))
+
 ## [1.9.6](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.5...v1.9.6) (2024-12-04)
 
 
