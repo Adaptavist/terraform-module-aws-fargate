@@ -143,7 +143,7 @@ resource "aws_cloudwatch_metric_alarm" "target_response_time" {
   metric_name         = "TargetResponseTime"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   threshold           = var.monit_target_response_time
-  evaluation_periods  = var.fargate_service_name == "sr-dispatcher-filter-sync" ? "4" : "2"
+  evaluation_periods  = var.monit_target_response_time_evaluation_period
   period              = "300"
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Response time from ${var.fargate_service_name}"
