@@ -1,3 +1,10 @@
+## [1.9.8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.7...v1.9.8) (2025-01-13)
+
+
+### Bug Fixes
+
+* update readme ([5bfcc0e](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/5bfcc0ed28dd10d7447cc0edfd93d793cad317a4))
+
 ## [1.9.7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.6...v1.9.7) (2024-12-05)
 
 
