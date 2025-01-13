@@ -87,3 +87,7 @@ In order to validate any changes in this repo locally.
 4. Navigate to line 198 and change the *source* property for the *module "fargate-service"* to point to your branch by changing the value of the *ref=* part of the url to be like *ref=BranchName*. 
 5. Pull the latest terraform code from the branch by running the command of *terraform init*. 
 
+## Conventional commits
+
+This repository utilises [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary). For example, to trigger a new release version, please make sure your commits match this format. 
+
