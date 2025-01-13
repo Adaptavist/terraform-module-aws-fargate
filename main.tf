@@ -154,6 +154,7 @@ module "monitoring" {
   alarm_data_missing_action         = var.alarm_data_missing_action
   monit_resp_success_percentage     = var.monit_resp_success_percentage
   monit_target_response_time        = var.monit_target_response_time
+  monit_target_response_time_evaluation_period = var.monit_target_response_time_evaluation_period
 }
 
 module "autoscaling" {

@@ -80,6 +80,12 @@ variable "monit_target_response_time" {
   description = "service response time in seconds greater than or equal to"
 }
 
+variable monit_target_response_time_evaluation_period {
+  type        = string
+  default     = "2"
+  description = "Evaluation period for target response time alarm"
+}
+
 variable "desired_count" {
   type        = number
   description = "desired number of container instances running"
