@@ -89,5 +89,5 @@ In order to validate any changes in this repo locally.
 
 ## Conventional commits
 
-This repository utilises [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary). For example, to trigger a new release version, please make sure your commits match this format. 
+This repository uses [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary). For example, to trigger a new release version, please make sure your commits match this format. 
 
