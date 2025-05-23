@@ -73,3 +73,9 @@ variable "low_cpu_alarm_enabled" {
   default     = true
   description = "Indicates if the low cpu alarm is enabled"
 }
+
+variable "low_resource_consumption_alerts_enabled" {
+  type        = bool
+  default     = false
+  description = "Indicates if the low cpu alarm is enabled"
+}
