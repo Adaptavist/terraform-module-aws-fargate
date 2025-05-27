@@ -160,19 +160,20 @@ module "monitoring" {
 module "autoscaling" {
   source = "./modules/autoscaling"
 
-  cpu_utilization_high_period       = var.cpu_utilization_high_period
-  cpu_utilization_high_threshold    = var.cpu_utilization_high_threshold
-  cpu_utilization_low_period        = var.cpu_utilization_low_period
-  cpu_utilization_low_threshold     = var.cpu_utilization_low_threshold
-  ecs_cluster_name                  = var.ecs_cluster_name
-  max_count                         = var.enable_autoscaling ? var.max_count : var.desired_count
-  memory_utilization_high_period    = var.memory_utilization_high_period
-  memory_utilization_high_threshold = var.memory_utilization_high_threshold
-  memory_utilization_low_period     = var.memory_utilization_low_period
-  memory_utilization_low_threshold  = var.memory_utilization_low_threshold
-  min_count                         = var.enable_autoscaling ? var.min_count : var.desired_count
-  service_name                      = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
-  slack_topic_arn                   = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
-  low_cpu_alarm_enabled             = var.low_cpu_alarm_enabled
-  tags                              = module.labels.tags
+  cpu_utilization_high_period             = var.cpu_utilization_high_period
+  cpu_utilization_high_threshold          = var.cpu_utilization_high_threshold
+  cpu_utilization_low_period              = var.cpu_utilization_low_period
+  cpu_utilization_low_threshold           = var.cpu_utilization_low_threshold
+  low_resource_consumption_alerts_enabled = var.low_resource_consumption_alerts_enabled
+  ecs_cluster_name                        = var.ecs_cluster_name
+  max_count                               = var.enable_autoscaling ? var.max_count : var.desired_count
+  memory_utilization_high_period          = var.memory_utilization_high_period
+  memory_utilization_high_threshold       = var.memory_utilization_high_threshold
+  memory_utilization_low_period           = var.memory_utilization_low_period
+  memory_utilization_low_threshold        = var.memory_utilization_low_threshold
+  min_count                               = var.enable_autoscaling ? var.min_count : var.desired_count
+  service_name                            = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
+  slack_topic_arn                         = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
+  low_cpu_alarm_enabled                   = var.low_cpu_alarm_enabled
+  tags                                    = module.labels.tags
 }
