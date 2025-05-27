@@ -1,3 +1,15 @@
+# [1.10.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.8...v1.10.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* update description on new autoscaling var ([3eec773](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/3eec7731346040dfb2eb20004d948b53f74bd25c))
+
+
+### Features
+
+* add variables and conditionals on low cpu/memory alarms to send low CPU and memory alarms to slack sns topic ([ae53eed](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/ae53eed09f10eb6a74ae4d84c62ab995e02fe81f))
+
 ## [1.9.8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.7...v1.9.8) (2025-01-13)
 
 
