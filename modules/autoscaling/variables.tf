@@ -77,5 +77,5 @@ variable "low_cpu_alarm_enabled" {
 variable "low_resource_consumption_alerts_enabled" {
   type        = bool
   default     = false
-  description = "Indicates if Slack alerts should be sent for low CPU/Memory consumption"
+  description = "Indicates if Slack alerts should be enabled for low CPU/Memory consumption"
 }
