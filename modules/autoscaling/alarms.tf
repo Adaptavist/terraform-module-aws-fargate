@@ -31,7 +31,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
   alarm_name          = "${var.service_name}-cpu-utilisation-low"
-  comparison_operator = "LessThanThreshold"
+  comparison_operator = var.cpu_utilization_low_threshold == 0 ? "LessThanOrEqualToThreshold" : "LessThanThreshold"
   evaluation_periods  = 1
   count               = var.low_cpu_alarm_enabled ? 1 : 0
   metric_name         = "CPUUtilization"
@@ -92,7 +92,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
 
 resource "aws_cloudwatch_metric_alarm" "memory_utilisation_low" {
   alarm_name          = "${var.service_name}-memory-utilisation-low"
-  comparison_operator = "LessThanThreshold"
+  comparison_operator = var.memory_utilization_low_threshold == 0 ? "LessThanOrEqualToThreshold" : "LessThanThreshold"
   evaluation_periods  = 1
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
