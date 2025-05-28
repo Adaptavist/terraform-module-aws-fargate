@@ -1,3 +1,10 @@
+# [1.11.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.10.0...v1.11.0) (2025-05-28)
+
+
+### Features
+
+* amend description to trigger semantic release ([40c1c01](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/40c1c018753c6fd484d18ef0a0c500ebce2b3d0b))
+
 # [1.10.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.9.8...v1.10.0) (2025-05-27)
 
 
