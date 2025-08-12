@@ -53,6 +53,12 @@ variable "ingress_sg_list" {
   description = "List of ingress security groups that will be applied to the created Fargate service"
 }
 
+variable "ingress_sg_map" {
+  description = "Map of security group IDs for ingress rules"
+  type        = map(string)
+  default     = {}
+}
+
 variable "assign_public_ip" {
   type        = bool
   default     = false
