@@ -64,6 +64,7 @@ resource "aws_ecs_service" "fargate" {
   launch_type                        = "FARGATE"
   platform_version                   = var.fargate_platform_version
   health_check_grace_period_seconds  = var.health_check_grace_period
+  availability_zone_rebalancing      = var.availability_zone_rebalancing
 
   network_configuration {
     subnets          = var.subnet_ids
