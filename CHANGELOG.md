@@ -1,3 +1,10 @@
+# [1.12.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.11.1...v1.12.0) (2025-08-13)
+
+
+### Features
+
+* allow specification of availability_zone_rebalancing ([0410e90](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/0410e907561d14e15eb88f5cc0be3d284dd9bf0a))
+
 ## [1.11.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.11.0...v1.11.1) (2025-08-13)
 
 
