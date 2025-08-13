@@ -1,3 +1,10 @@
+locals {
+  # Convert list to map if using old variable, otherwise use new map
+  ingress_sgs = length(var.ingress_sg_list) > 0 ? {
+    for idx, sg in var.ingress_sg_list : "sg_${idx}" => sg
+  } : var.ingress_sg_map
+}
+
 module "labels" {
   source = "git::https://github.com/cloudposse/terraform-null-label.git?ref=488ab91e34a24a86957e397d9f7262ec5925586a" # <- version 0.25.0
 
@@ -27,8 +34,8 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_security_group_rule" "ingress" {
-  for_each = nonsensitive(toset(var.ingress_sg_list))
-
+  for_each = local.ingress_sgs
+  
   description              = "Load Balancer Ingress"
   from_port                = var.port
   protocol                 = "TCP"
@@ -36,7 +43,7 @@ resource "aws_security_group_rule" "ingress" {
   source_security_group_id = each.value
   type                     = "ingress"
   security_group_id        = aws_security_group.this.id
-
+  
   lifecycle {
     create_before_destroy = true
   }
