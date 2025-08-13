@@ -1,3 +1,10 @@
+## [1.11.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.11.0...v1.11.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* support map for ingress sg to help with multi region deployments ([c30596b](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/c30596b50c9839eeae28cf0cd487d9411512a748))
+
 # [1.11.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.10.0...v1.11.0) (2025-05-28)
 
 
