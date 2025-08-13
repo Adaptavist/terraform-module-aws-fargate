@@ -128,6 +128,12 @@ variable "health_check_grace_period" {
   description = "Number of seconds that ECS service scheduler should ignore unhealthy ELB target/container/route 53 health checks after a task enters a RUNNING state"
 }
 
+variable "availability_zone_rebalancing" {
+  type        = string
+  default     = "DISABLED"
+  description = "ENABLED or DISABLED - whether ECS should keep instances balanced between AZs, if enabled instances may stop/start to keep the balance"
+}
+
 // Monitoring
 
 variable "create_connection_error_alarm" {
