@@ -1,3 +1,10 @@
+## [1.12.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.12.0...v1.12.1) (2025-08-15)
+
+
+### Bug Fixes
+
+* removing map and logic for sg ingress rules, not going to use this approach and it was causing the sg rules to be recreated, removing the variable, the local and reverting the for_each to what it was previously, will keep Jons change to add az_rebalancing ([b1c88fc](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/b1c88fc7e30a771d6e224b634f83b9d1233eceb2))
+
 # [1.12.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.11.1...v1.12.0) (2025-08-13)
 
 
