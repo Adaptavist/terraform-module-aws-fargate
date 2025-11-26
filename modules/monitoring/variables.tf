@@ -80,7 +80,7 @@ variable "monit_target_response_time" {
   description = "service response time in seconds greater than or equal to"
 }
 
-variable monit_target_response_time_evaluation_period {
+variable "monit_target_response_time_evaluation_period" {
   type        = string
   default     = "2"
   description = "Evaluation period for target response time alarm"
