@@ -5,12 +5,13 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = var.cpu_utilization_high_period
-  statistic           = "Maximum"
+  statistic           = var.cpu_utilization_threshold_statistic
   threshold           = var.cpu_utilization_high_threshold
   treat_missing_data  = "notBreaching"
 
   alarm_description = format(
-    "Maximum service %v utilization %v last %d minute(s) over %v period(s)",
+    "%v service %v utilization %v last %d minute(s) over %v period(s)",
+    var.cpu_utilization_threshold_statistic,
     "CPU",
     "High",
     var.cpu_utilization_high_period / 60,
@@ -37,12 +38,13 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = var.cpu_utilization_low_period
-  statistic           = "Maximum"
+  statistic           = var.cpu_utilization_threshold_statistic
   threshold           = var.cpu_utilization_low_threshold
   treat_missing_data  = "notBreaching"
 
   alarm_description = format(
-    "Maximum service %v utilization %v last %d minute(s) over %v period(s)",
+    "%v service %v utilization %v last %d minute(s) over %v period(s)",
+    var.cpu_utilization_threshold_statistic,
     "CPU",
     "Low",
     var.cpu_utilization_low_period / 60,
@@ -67,12 +69,13 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
   period              = var.memory_utilization_high_period
-  statistic           = "Maximum"
+  statistic           = var.memory_utilization_threshold_statistic
   threshold           = var.memory_utilization_high_threshold
   treat_missing_data  = "notBreaching"
 
   alarm_description = format(
-    "Maximum service %v utilization %v last %d minute(s) over %v period(s)",
+    "%v service %v utilization %v last %d minute(s) over %v period(s)",
+    var.memory_utilization_threshold_statistic,
     "Memory",
     "High",
     var.memory_utilization_high_period / 60,
@@ -97,12 +100,13 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_low" {
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
   period              = var.memory_utilization_low_period
-  statistic           = "Maximum"
+  statistic           = var.memory_utilization_threshold_statistic
   threshold           = var.memory_utilization_low_threshold
   treat_missing_data  = "notBreaching"
 
   alarm_description = format(
-    "Maximum service %v utilization %v last %d minute(s) over %v period(s)",
+    "%v service %v utilization %v last %d minute(s) over %v period(s)",
+    var.memory_utilization_threshold_statistic,
     "Memory",
     "Low",
     var.memory_utilization_low_period / 60,
