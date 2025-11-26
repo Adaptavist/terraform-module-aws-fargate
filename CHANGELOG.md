@@ -1,3 +1,10 @@
+# [1.13.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.12.1...v1.13.0) (2025-11-26)
+
+
+### Features
+
+* update autoscaling rules to be based on Maximum MemoryUtilization and CPUUtilization ([26ec4b8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/26ec4b80dde7e6b95b25879a17858271301880d6))
+
 ## [1.12.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.12.0...v1.12.1) (2025-08-15)
 
 
