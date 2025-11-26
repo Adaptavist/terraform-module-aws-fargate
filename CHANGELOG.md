@@ -1,3 +1,12 @@
+## [1.13.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.0...v1.13.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* additional variable to determine the statistic should be used for cpu and memory autoscalling ([80abe68](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/80abe68217ab538a4e3e521ed57388b1e3581a63))
+* remove default values for statistic ([8fbf5e5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/8fbf5e5431a27d02855071f3c7d458e2055b955b))
+* typo ([476a947](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/476a9477423e8761d3e6c9d99edbe765a4bb8e3b))
+
 # [1.13.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.12.1...v1.13.0) (2025-11-26)
 
 
