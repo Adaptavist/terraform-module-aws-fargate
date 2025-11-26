@@ -190,7 +190,7 @@ variable "monit_target_response_time" {
   description = "service response time in seconds greater than or equal to"
 }
 
-variable monit_target_response_time_evaluation_period {
+variable "monit_target_response_time_evaluation_period" {
   type        = string
   default     = "2"
   description = "Evaluation period for target response time alarm"
@@ -249,7 +249,7 @@ variable "memory_utilization_low_period" {
 variable "memory_utilization_low_threshold" {
   type        = number
   default     = 20
-  description = "Low memory threshold"
+  description = "Maximum MemoryUtilization threshold, if breached will scale down"
 }
 
 variable "memory_utilization_high_period" {
@@ -261,7 +261,7 @@ variable "memory_utilization_high_period" {
 variable "memory_utilization_high_threshold" {
   type        = number
   default     = 60
-  description = "High memory threshold"
+  description = "Maximum MemoryUtilization threshold, if breached will scale out"
 }
 
 variable "cpu_utilization_low_period" {
@@ -273,7 +273,7 @@ variable "cpu_utilization_low_period" {
 variable "cpu_utilization_low_threshold" {
   type        = number
   default     = 20
-  description = "Low CPU threshold"
+  description = "Maximum CPUUtilization threshold, if breached will scale down"
 }
 
 variable "cpu_utilization_high_period" {
@@ -285,7 +285,7 @@ variable "cpu_utilization_high_period" {
 variable "cpu_utilization_high_threshold" {
   type        = number
   default     = 60
-  description = "High CPU threshold"
+  description = "Maximum CPUUtilization threshold, if breached will scale out"
 }
 
 variable "low_cpu_alarm_enabled" {

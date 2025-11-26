@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "egress" {
 
 resource "aws_security_group_rule" "ingress" {
   for_each = nonsensitive(toset(var.ingress_sg_list))
-  
+
   description              = "Load Balancer Ingress"
   from_port                = var.port
   protocol                 = "TCP"
@@ -36,7 +36,7 @@ resource "aws_security_group_rule" "ingress" {
   source_security_group_id = each.value
   type                     = "ingress"
   security_group_id        = aws_security_group.this.id
-  
+
   lifecycle {
     create_before_destroy = true
   }
@@ -145,16 +145,16 @@ module "monitoring" {
   fargate_service_name = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
   desired_count        = var.desired_count
 
-  enable_slack_notifications        = var.enable_slack_notifications
-  slack_webhook_url                 = var.slack_webhook_url
-  create_connection_error_alarm     = var.create_connection_error_alarm
-  create_target_response_time_alarm = var.create_target_response_time_alarm
-  create_unhealthy_host_count_alarm = var.create_unhealthy_host_count_alarm
-  create_request_count_alarm        = var.create_request_count_alarm
-  create_success_responses_alarm    = var.create_success_responses_alarm
-  alarm_data_missing_action         = var.alarm_data_missing_action
-  monit_resp_success_percentage     = var.monit_resp_success_percentage
-  monit_target_response_time        = var.monit_target_response_time
+  enable_slack_notifications                   = var.enable_slack_notifications
+  slack_webhook_url                            = var.slack_webhook_url
+  create_connection_error_alarm                = var.create_connection_error_alarm
+  create_target_response_time_alarm            = var.create_target_response_time_alarm
+  create_unhealthy_host_count_alarm            = var.create_unhealthy_host_count_alarm
+  create_request_count_alarm                   = var.create_request_count_alarm
+  create_success_responses_alarm               = var.create_success_responses_alarm
+  alarm_data_missing_action                    = var.alarm_data_missing_action
+  monit_resp_success_percentage                = var.monit_resp_success_percentage
+  monit_target_response_time                   = var.monit_target_response_time
   monit_target_response_time_evaluation_period = var.monit_target_response_time_evaluation_period
 }
 
