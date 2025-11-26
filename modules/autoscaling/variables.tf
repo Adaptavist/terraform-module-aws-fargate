@@ -79,3 +79,23 @@ variable "low_resource_consumption_alerts_enabled" {
   default     = false
   description = "Indicates if Slack alerts should be enabled for low CPU/Memory consumption"
 }
+
+variable "cpu_utilization_threshold_statistic" {
+  type        = number
+  description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
+
+  validation {
+    condition     = contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.cpu_utilization_threshold_statistic)
+    error_message = "cpu_utilization_low_threshold_statistic must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+  }
+}
+
+variable "memory_utilization_threshold_statistic" {
+  type        = number
+  description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
+
+  validation {
+    condition     = contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.memory_utilization_threshold_statistic)
+    error_message = "cpu_utilization_low_threshold_statistic must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+  }
+}

@@ -177,4 +177,6 @@ module "autoscaling" {
   slack_topic_arn                         = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
   low_cpu_alarm_enabled                   = var.low_cpu_alarm_enabled
   tags                                    = module.labels.tags
+  cpu_utilization_threshold_statistic     = var.cpu_utilization_threshold_statistic
+  memory_utilization_threshold_statistic  = var.memory_utilization_threshold_statistic
 }
