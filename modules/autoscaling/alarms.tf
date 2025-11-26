@@ -11,7 +11,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
 
   alarm_description = format(
     "%v service %v utilization %v last %d minute(s) over %v period(s)",
-    var.cpu_utilization_threshold_statistic
+    var.cpu_utilization_threshold_statistic,
     "CPU",
     "High",
     var.cpu_utilization_high_period / 60,
@@ -44,7 +44,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
 
   alarm_description = format(
     "%v service %v utilization %v last %d minute(s) over %v period(s)",
-    var.cpu_utilization_threshold_statistic
+    var.cpu_utilization_threshold_statistic,
     "CPU",
     "Low",
     var.cpu_utilization_low_period / 60,
@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
 
   alarm_description = format(
     "%v service %v utilization %v last %d minute(s) over %v period(s)",
-    var.memory_utilization_threshold_statistic
+    var.memory_utilization_threshold_statistic,
     "Memory",
     "High",
     var.memory_utilization_high_period / 60,
@@ -106,7 +106,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_low" {
 
   alarm_description = format(
     "%v service %v utilization %v last %d minute(s) over %v period(s)",
-    var.memory_utilization_threshold_statistic
+    var.memory_utilization_threshold_statistic,
     "Memory",
     "Low",
     var.memory_utilization_low_period / 60,
