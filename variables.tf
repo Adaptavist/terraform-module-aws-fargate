@@ -306,7 +306,7 @@ variable "cpu_utilization_threshold_statistic" {
 
   validation {
     condition     = contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.cpu_utilization_threshold_statistic)
-    error_message = "cpu_utilization_low_threshold_statistic must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+    error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
   }
 }
 
@@ -317,6 +317,6 @@ variable "memory_utilization_threshold_statistic" {
 
   validation {
     condition     = contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.memory_utilization_threshold_statistic)
-    error_message = "cpu_utilization_low_threshold_statistic must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+    error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
   }
 }
