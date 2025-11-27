@@ -81,7 +81,7 @@ variable "low_resource_consumption_alerts_enabled" {
 }
 
 variable "cpu_utilization_threshold_statistic" {
-  type        = number
+  type        = string
   description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
 
   validation {
@@ -91,7 +91,7 @@ variable "cpu_utilization_threshold_statistic" {
 }
 
 variable "memory_utilization_threshold_statistic" {
-  type        = number
+  type        = string
   description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
 
   validation {
