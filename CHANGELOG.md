@@ -1,3 +1,10 @@
+## [1.13.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.1...v1.13.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* fix autoscaling variable types ([78592a8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/78592a88b07d2aaa8112628c4d49ad6bf65999d9))
+
 ## [1.13.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.0...v1.13.1) (2025-11-26)
 
 
