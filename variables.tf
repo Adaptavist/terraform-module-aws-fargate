@@ -288,17 +288,6 @@ variable "cpu_utilization_high_threshold" {
   description = "Maximum CPUUtilization threshold, if breached will scale out"
 }
 
-variable "low_cpu_alarm_enabled" {
-  type        = bool
-  description = "Indicates if the low cpu alarm is enabled"
-}
-
-variable "low_resource_consumption_alerts_enabled" {
-  type        = bool
-  default     = false
-  description = "Indicates if Slack alerts should be sent for low CPU/Memory consumption"
-}
-
 variable "cpu_utilization_threshold_statistic" {
   type        = string
   description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"

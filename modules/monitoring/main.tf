@@ -28,7 +28,7 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
   alarm_name          = "${var.fargate_service_name}-num-requests"
   comparison_operator = "LessThanLowerOrGreaterThanUpperThreshold"
   threshold_metric_id = "e1"
-  evaluation_periods  = "2"
+  evaluation_periods  = 2
   alarm_description   = "Inbound traffic to ${var.fargate_service_name}"
   treat_missing_data  = var.alarm_data_missing_action
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
@@ -47,7 +47,7 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
     metric {
       metric_name = "RequestCount"
       namespace   = "AWS/ApplicationELB"
-      period      = "300"
+      period      = 300
       stat        = "Sum"
       unit        = "Count"
 
@@ -66,7 +66,7 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
   alarm_name          = "${var.fargate_service_name}-success-responses"
   comparison_operator = "LessThanThreshold"
   threshold           = var.monit_resp_success_percentage
-  evaluation_periods  = "2"
+  evaluation_periods  = 2
   alarm_description   = "2xx responses from ${var.fargate_service_name}"
   treat_missing_data  = var.alarm_data_missing_action
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
@@ -84,7 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
     metric {
       metric_name = "RequestCount"
       namespace   = "AWS/ApplicationELB"
-      period      = "300"
+      period      = 300
       stat        = "Sum"
       unit        = "Count"
 
@@ -101,7 +101,7 @@ resource "aws_cloudwatch_metric_alarm" "success_responses" {
     metric {
       metric_name = "HTTPCode_Target_2XX_Count"
       namespace   = "AWS/ApplicationELB"
-      period      = "300"
+      period      = 300
       stat        = "Sum"
       unit        = "Count"
 
@@ -121,9 +121,9 @@ resource "aws_cloudwatch_metric_alarm" "connection_error_count" {
   statistic           = "Sum"
   metric_name         = "TargetConnectionErrorCount"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = "0"
-  evaluation_periods  = "2"
-  period              = "300"
+  threshold           = 0
+  evaluation_periods  = 2
+  period              = 300
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Connection error count between ALB and ${var.fargate_service_name}"
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
@@ -144,7 +144,7 @@ resource "aws_cloudwatch_metric_alarm" "target_response_time" {
   comparison_operator = "GreaterThanOrEqualToThreshold"
   threshold           = var.monit_target_response_time
   evaluation_periods  = var.monit_target_response_time_evaluation_period
-  period              = "300"
+  period              = 300
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Response time from ${var.fargate_service_name}"
   treat_missing_data  = var.alarm_data_missing_action
@@ -165,8 +165,8 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
   metric_name         = "UnHealthyHostCount"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   threshold           = floor(var.desired_count / 2)
-  evaluation_periods  = "2"
-  period              = "300"
+  evaluation_periods  = 2
+  period              = 300
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Unhealth instances of ${var.fargate_service_name}"
   treat_missing_data  = "breaching"
@@ -176,5 +176,67 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
     LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
     TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
   }
+  tags = var.tags
+}
+
+resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
+  alarm_name          = "${var.fargate_service_name}-cpu-utilisation-high"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = 300
+  statistic           = var.cpu_utilization_threshold_statistic
+  threshold           = var.cpu_utilization_high_threshold
+  treat_missing_data  = "notBreaching"
+
+  alarm_description = format(
+    "%v service %v utilization %v last %d minute(s) over %v period(s)",
+    var.cpu_utilization_threshold_statistic,
+    "CPU",
+    "High",
+    5,
+    1
+  )
+
+  alarm_actions = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
+  ok_actions    = []
+
+  dimensions = {
+    "ClusterName" = var.ecs_cluster_name
+    "ServiceName" = var.fargate_service_name
+  }
+
+  tags = var.tags
+}
+
+resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
+  alarm_name          = "${var.fargate_service_name}-memory-utilisation-high"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 2
+  metric_name         = "MemoryUtilization"
+  namespace           = "AWS/ECS"
+  period              = 300
+  statistic           = var.memory_utilization_threshold_statistic
+  threshold           = var.memory_utilization_high_threshold
+  treat_missing_data  = "notBreaching"
+
+  alarm_description = format(
+    "%v service %v utilization %v last %d minute(s) over %v period(s)",
+    var.memory_utilization_threshold_statistic,
+    "Memory",
+    "High",
+    5,
+    1
+  )
+
+  alarm_actions = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
+  ok_actions    = []
+
+  dimensions = {
+    "ClusterName" = var.ecs_cluster_name
+    "ServiceName" = var.fargate_service_name
+  }
+
   tags = var.tags
 }

@@ -27,6 +27,11 @@ variable "fargate_service_name" {
   description = "Fargate service name"
 }
 
+variable "ecs_cluster_name" {
+  type        = string
+  description = "ESC cluster name"
+}
+
 variable "slack_webhook_url" {
   type        = string
   description = "Slack webhook URL for Cloudwatch alarm notifications"
@@ -81,8 +86,8 @@ variable "monit_target_response_time" {
 }
 
 variable "monit_target_response_time_evaluation_period" {
-  type        = string
-  default     = "2"
+  type        = number
+  default     = 2
   description = "Evaluation period for target response time alarm"
 }
 
@@ -103,4 +108,34 @@ variable "monitoring_config" {
     target_group_arn_suffix  = string
     // some of the defaulted properties, such as monitoring period, can be added here
   }))
+}
+
+variable "cpu_utilization_threshold_statistic" {
+  type        = string
+  description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
+
+  validation {
+    condition     = contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.cpu_utilization_threshold_statistic)
+    error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+  }
+}
+
+variable "memory_utilization_threshold_statistic" {
+  type        = string
+  description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
+
+  validation {
+    condition     = contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.memory_utilization_threshold_statistic)
+    error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+  }
+}
+
+variable "cpu_utilization_high_threshold" {
+  type        = number
+  description = "High CPU threshold"
+}
+
+variable "memory_utilization_high_threshold" {
+  type        = number
+  description = "High CPU threshold"
 }

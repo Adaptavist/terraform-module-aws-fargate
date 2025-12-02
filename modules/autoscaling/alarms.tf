@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
-  alarm_name          = "${var.service_name}-cpu-utilisation-high"
+  alarm_name          = "${var.service_name}-cpu-utilisation-high-autoscaling"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 1
+  evaluation_periods  = 2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = var.cpu_utilization_high_period
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
     1
   )
 
-  alarm_actions = compact([var.slack_topic_arn, module.ecs_cloudwatch_autoscaling_cpu.scale_up_policy_arn])
+  alarm_actions = [module.ecs_cloudwatch_autoscaling_cpu.scale_up_policy_arn]
 
   ok_actions = []
 
@@ -31,10 +31,9 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
-  alarm_name          = "${var.service_name}-cpu-utilisation-low"
+  alarm_name          = "${var.service_name}-cpu-utilisation-low-autoscaling"
   comparison_operator = var.cpu_utilization_low_threshold == 0 ? "LessThanOrEqualToThreshold" : "LessThanThreshold"
-  evaluation_periods  = 1
-  count               = var.low_cpu_alarm_enabled ? 1 : 0
+  evaluation_periods  = 2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
   period              = var.cpu_utilization_low_period
@@ -52,7 +51,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
   )
 
   ok_actions    = []
-  alarm_actions = var.low_resource_consumption_alerts_enabled ? compact([var.slack_topic_arn, module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]) : [module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]
+  alarm_actions = [module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]
 
   dimensions = {
     "ClusterName" = var.ecs_cluster_name
@@ -63,9 +62,9 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
-  alarm_name          = "${var.service_name}-memory-utilisation-high"
+  alarm_name          = "${var.service_name}-memory-utilisation-high-autoscaling"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 1
+  evaluation_periods  = 2
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
   period              = var.memory_utilization_high_period
@@ -82,7 +81,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
     1
   )
 
-  alarm_actions = compact([var.slack_topic_arn, module.ecs_cloudwatch_autoscaling_memory.scale_up_policy_arn])
+  alarm_actions = [module.ecs_cloudwatch_autoscaling_memory.scale_up_policy_arn]
   ok_actions    = []
 
   dimensions = {
@@ -94,9 +93,9 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory_utilisation_low" {
-  alarm_name          = "${var.service_name}-memory-utilisation-low"
+  alarm_name          = "${var.service_name}-memory-utilisation-low-autoscaling"
   comparison_operator = var.memory_utilization_low_threshold == 0 ? "LessThanOrEqualToThreshold" : "LessThanThreshold"
-  evaluation_periods  = 1
+  evaluation_periods  = 2
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
   period              = var.memory_utilization_low_period
@@ -112,7 +111,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_low" {
     var.memory_utilization_low_period / 60,
     1
   )
-  alarm_actions = var.low_resource_consumption_alerts_enabled ? compact([var.slack_topic_arn, module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]) : [module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]
+  alarm_actions = [module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]
   ok_actions    = []
 
   dimensions = {
