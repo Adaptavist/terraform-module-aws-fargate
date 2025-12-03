@@ -38,7 +38,7 @@ pipelines:
                 depth: full
             script:
                 - apt-get update && apt-get install git -y
-                - npm install --save-dev @commitlint/config-conventional @commitlint/cli
+                - npm install --ignore-scripts --save-dev @commitlint/config-conventional @commitlint/cli
                 - npx commitlint --from "${BITBUCKET_COMMIT}~$(git rev-list --count ${BITBUCKET_BRANCH} ^origin/${BITBUCKET_PR_DESTINATION_BRANCH:-master})" --to "${BITBUCKET_COMMIT}" --verbose
   branches:
     master:
