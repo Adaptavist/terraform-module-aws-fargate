@@ -25,6 +25,7 @@ variable "max_count" {
 
 variable "memory_utilization_low_period" {
   type        = number
+  default     = 300
   description = "Duration of the monitoring period"
 }
 
@@ -35,6 +36,7 @@ variable "memory_utilization_low_threshold" {
 
 variable "memory_utilization_high_period" {
   type        = number
+  default     = 60
   description = "Duration of the monitoring period"
 }
 
@@ -45,6 +47,7 @@ variable "memory_utilization_high_threshold" {
 
 variable "cpu_utilization_low_period" {
   type        = number
+  default     = 300
   description = "Duration of the monitoring period"
 }
 
@@ -55,29 +58,13 @@ variable "cpu_utilization_low_threshold" {
 
 variable "cpu_utilization_high_period" {
   type        = number
+  default     = 60
   description = "Duration of the monitoring period"
 }
 
 variable "cpu_utilization_high_threshold" {
   type        = number
   description = "High CPU threshold"
-}
-
-variable "slack_topic_arn" {
-  type        = string
-  description = "SNS topic ARN for Slack notifications"
-}
-
-variable "low_cpu_alarm_enabled" {
-  type        = bool
-  default     = true
-  description = "Indicates if the low cpu alarm is enabled"
-}
-
-variable "low_resource_consumption_alerts_enabled" {
-  type        = bool
-  default     = false
-  description = "Indicates if Slack alerts should be enabled for low CPU/Memory consumption"
 }
 
 variable "cpu_utilization_threshold_statistic" {

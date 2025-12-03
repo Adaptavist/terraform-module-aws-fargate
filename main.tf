@@ -143,40 +143,47 @@ module "monitoring" {
   monitoring_config = var.monitoring_config
 
   fargate_service_name = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
+  ecs_cluster_name     = var.ecs_cluster_name
   desired_count        = var.desired_count
 
-  enable_slack_notifications                   = var.enable_slack_notifications
-  slack_webhook_url                            = var.slack_webhook_url
+  enable_slack_notifications = var.enable_slack_notifications
+  slack_webhook_url          = var.slack_webhook_url
+  alarm_data_missing_action  = var.alarm_data_missing_action
+
   create_connection_error_alarm                = var.create_connection_error_alarm
   create_target_response_time_alarm            = var.create_target_response_time_alarm
   create_unhealthy_host_count_alarm            = var.create_unhealthy_host_count_alarm
   create_request_count_alarm                   = var.create_request_count_alarm
   create_success_responses_alarm               = var.create_success_responses_alarm
-  alarm_data_missing_action                    = var.alarm_data_missing_action
   monit_resp_success_percentage                = var.monit_resp_success_percentage
   monit_target_response_time                   = var.monit_target_response_time
   monit_target_response_time_evaluation_period = var.monit_target_response_time_evaluation_period
+
+  cpu_utilization_high_threshold         = var.cpu_utilization_high_threshold
+  cpu_utilization_threshold_statistic    = var.cpu_utilization_threshold_statistic
+  memory_utilization_high_threshold      = var.memory_utilization_high_threshold
+  memory_utilization_threshold_statistic = var.memory_utilization_threshold_statistic
 }
 
 module "autoscaling" {
   source = "./modules/autoscaling"
+  count  = var.enable_autoscaling ? 1 : 0
 
-  cpu_utilization_high_period             = var.cpu_utilization_high_period
-  cpu_utilization_high_threshold          = var.cpu_utilization_high_threshold
-  cpu_utilization_low_period              = var.cpu_utilization_low_period
-  cpu_utilization_low_threshold           = var.cpu_utilization_low_threshold
-  low_resource_consumption_alerts_enabled = var.low_resource_consumption_alerts_enabled
-  ecs_cluster_name                        = var.ecs_cluster_name
-  max_count                               = var.enable_autoscaling ? var.max_count : var.desired_count
-  memory_utilization_high_period          = var.memory_utilization_high_period
-  memory_utilization_high_threshold       = var.memory_utilization_high_threshold
-  memory_utilization_low_period           = var.memory_utilization_low_period
-  memory_utilization_low_threshold        = var.memory_utilization_low_threshold
-  min_count                               = var.enable_autoscaling ? var.min_count : var.desired_count
-  service_name                            = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
-  slack_topic_arn                         = var.enable_slack_notifications ? module.monitoring.sns_slack_notification_topic_arn : ""
-  low_cpu_alarm_enabled                   = var.low_cpu_alarm_enabled
-  tags                                    = module.labels.tags
-  cpu_utilization_threshold_statistic     = var.cpu_utilization_threshold_statistic
-  memory_utilization_threshold_statistic  = var.memory_utilization_threshold_statistic
+  ecs_cluster_name = var.ecs_cluster_name
+  service_name     = (var.enable_codedeploy_control ? aws_ecs_service.fargate-codedeploy.*.name : aws_ecs_service.fargate.*.name)[0]
+  max_count        = var.max_count
+  min_count        = var.min_count
+
+  cpu_utilization_high_period            = var.cpu_utilization_high_period
+  cpu_utilization_high_threshold         = var.cpu_utilization_high_threshold
+  cpu_utilization_low_period             = var.cpu_utilization_low_period
+  cpu_utilization_low_threshold          = var.cpu_utilization_low_threshold
+  cpu_utilization_threshold_statistic    = var.cpu_utilization_threshold_statistic
+  memory_utilization_high_period         = var.memory_utilization_high_period
+  memory_utilization_high_threshold      = var.memory_utilization_high_threshold
+  memory_utilization_low_period          = var.memory_utilization_low_period
+  memory_utilization_low_threshold       = var.memory_utilization_low_threshold
+  memory_utilization_threshold_statistic = var.memory_utilization_threshold_statistic
+
+  tags = module.labels.tags
 }
