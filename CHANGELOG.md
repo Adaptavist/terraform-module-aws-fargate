@@ -1,3 +1,10 @@
+## [1.14.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.14.0...v1.14.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* remove duplicate alarms ([b9bffb5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/b9bffb5517785cddd508c0c233f05fc436bff073))
+
 # [1.14.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.3...v1.14.0) (2025-12-03)
 
 
