@@ -18,9 +18,28 @@ definitions:
 
 pipelines:
   default:
-    - step: { name: 'Checkov analysis', script: [ *checkov ], image: *checkov-image, services: [ docker ] }
-
+    - parallel:
+        - step:
+            name: 'Checkov analysis'
+            image: *checkov-image
+            services:
+                - docker
+            script:
+                - *checkov
+        - step:
+            name: 'Terraform validate'
+            image: hashicorp/terraform:1.13.2
+            script:
+                - terraform init && terraform validate
+        - step:
+            name: 'Lint commit messages'
+            image: node:24-slim
+            clone:
+                depth: full
+            script:
+                - apt-get update && apt-get install git -y
+                - npm install --save-dev @commitlint/config-conventional @commitlint/cli
+                - npx commitlint --from "${BITBUCKET_COMMIT}~$(git rev-list --count ${BITBUCKET_BRANCH} ^origin/${BITBUCKET_PR_DESTINATION_BRANCH:-master})" --to "${BITBUCKET_COMMIT}" --verbose
   branches:
     master:
       - step: *release
-      
