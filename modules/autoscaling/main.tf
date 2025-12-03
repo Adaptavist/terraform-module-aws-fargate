@@ -1,37 +1,90 @@
-module "ecs_cloudwatch_autoscaling_cpu" {
-  source = "git::https://github.com/cloudposse/terraform-aws-ecs-cloudwatch-autoscaling.git?ref=b8d39a739e9dcf28f29b3c152b6dba29e8718d20" # <- version 0.7.5
-
-  name                  = var.service_name
-  attributes            = ["cpu"]
-  label_order           = ["name", "attributes"]
-  service_name          = var.service_name
-  cluster_name          = var.ecs_cluster_name
-  min_capacity          = var.min_count
-  max_capacity          = var.max_count
-  scale_up_adjustment   = 1
-  scale_up_cooldown     = 60
-  scale_down_adjustment = -1
-  scale_down_cooldown   = 300
-
-  tags = var.tags
+resource "aws_appautoscaling_target" "default" {
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.ecs_cluster_name}/${var.service_name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  min_capacity       = var.min_count
+  max_capacity       = var.max_count
+  tags               = var.tags
 }
 
-module "ecs_cloudwatch_autoscaling_memory" {
-  source = "git::https://github.com/cloudposse/terraform-aws-ecs-cloudwatch-autoscaling.git?ref=b8d39a739e9dcf28f29b3c152b6dba29e8718d20" # <- version 0.7.5
+resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+  alarm_name          = "${var.service_name}-high-cpu-autoscaling"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = var.cpu_utilization_high_period
+  statistic           = var.cpu_utilization_threshold_statistic
+  threshold           = var.cpu_utilization_high_threshold
 
-  name                  = var.service_name
-  attributes            = ["memory"]
-  label_order           = ["name", "attributes"]
-  service_name          = var.service_name
-  cluster_name          = var.ecs_cluster_name
-  min_capacity          = var.min_count
-  max_capacity          = var.max_count
-  scale_up_adjustment   = 1
-  scale_up_cooldown     = 60
-  scale_down_adjustment = -1
-  scale_down_cooldown   = 300
+  dimensions = {
+    ClusterName = var.ecs_cluster_name
+    ServiceName = var.service_name
+  }
 
-  tags = var.tags
+  alarm_actions = [
+    aws_appautoscaling_policy.cpu_scale_up.arn
+  ]
+}
 
-  depends_on = [module.ecs_cloudwatch_autoscaling_cpu]
+resource "aws_appautoscaling_policy" "cpu_scale_up" {
+  name               = "cpu-scaling-up-${var.service_name}"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.default.resource_id
+  scalable_dimension = aws_appautoscaling_target.default.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.default.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 60
+    metric_aggregation_type = var.cpu_utilization_threshold_statistic
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+
+  depends_on = [aws_appautoscaling_target.default]
+}
+
+resource "aws_cloudwatch_metric_alarm" "mem_high" {
+  alarm_name          = "${var.service_name}-high-mem-autoscaling"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 2
+  metric_name         = "MemoryUtilization"
+  namespace           = "AWS/ECS"
+  period              = var.memory_utilization_high_period
+  statistic           = var.memory_utilization_threshold_statistic
+  threshold           = var.memory_utilization_high_threshold
+
+  dimensions = {
+    ClusterName = var.ecs_cluster_name
+    ServiceName = var.service_name
+  }
+
+  alarm_actions = [
+    aws_appautoscaling_policy.mem_scale_up.arn
+  ]
+}
+
+resource "aws_appautoscaling_policy" "mem_scale_up" {
+  name               = "mem-scaling-up-${var.service_name}"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.default.resource_id
+  scalable_dimension = aws_appautoscaling_target.default.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.default.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 60
+    metric_aggregation_type = var.memory_utilization_threshold_statistic
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+
+  depends_on = [aws_appautoscaling_target.default]
 }
