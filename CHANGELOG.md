@@ -1,3 +1,15 @@
+# [1.14.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.3...v1.14.0) (2025-12-03)
+
+
+### Bug Fixes
+
+* reimplement scaling up on high CPU and Mem ([67e591b](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/67e591b76a0f6f8fa0ed91a822e10376973552ea))
+
+
+### Features
+
+* implement scaling down on low cpu/mem ([5b94655](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/5b946550911d67844fd56fd3afd01aee324ecf5a))
+
 ## [1.13.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.2...v1.13.3) (2025-12-03)
 
 
