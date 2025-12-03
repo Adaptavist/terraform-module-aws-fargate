@@ -1,3 +1,10 @@
+## [1.13.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.2...v1.13.3) (2025-12-03)
+
+
+### Bug Fixes
+
+* Detach autoscaling and monitoring alarms ([9101e16](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/9101e162ee867c5dd48aee51e9c4ddd96350371c))
+
 ## [1.13.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.13.1...v1.13.2) (2025-11-27)
 
 
