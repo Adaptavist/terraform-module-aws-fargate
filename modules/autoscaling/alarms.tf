@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
     1
   )
 
-  alarm_actions = [module.ecs_cloudwatch_autoscaling_cpu.scale_up_policy_arn]
+  alarm_actions = [aws_appautoscaling_policy.cpu_scale_up.arn]
 
   ok_actions = []
 
@@ -51,7 +51,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_low" {
   )
 
   ok_actions    = []
-  alarm_actions = [module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]
+  alarm_actions = [aws_appautoscaling_policy.cpu_scale_down.arn]
 
   dimensions = {
     "ClusterName" = var.ecs_cluster_name
@@ -81,7 +81,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_high" {
     1
   )
 
-  alarm_actions = [module.ecs_cloudwatch_autoscaling_memory.scale_up_policy_arn]
+  alarm_actions = [aws_appautoscaling_policy.mem_scale_up.arn]
   ok_actions    = []
 
   dimensions = {
@@ -111,7 +111,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilisation_low" {
     var.memory_utilization_low_period / 60,
     1
   )
-  alarm_actions = [module.ecs_cloudwatch_autoscaling_cpu.scale_down_policy_arn]
+  alarm_actions = [aws_appautoscaling_policy.mem_scale_down.arn]
   ok_actions    = []
 
   dimensions = {
