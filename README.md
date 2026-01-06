@@ -20,10 +20,13 @@ Scaling-up cool down period is 1 minute while scaling-down cool down period is 5
 |------|-------------|------|---------|:--------:|
 | alarm\_data\_missing\_action | Missing data action for success responses alarm. Possible values: missing or breaching | `string` | `"missing"` | no |
 | assign\_public\_ip | Assign public IP to the Fargate service | `bool` | `false` | no |
+| availability\_zone\_rebalancing | Whether ECS should keep instances balanced between AZs. Valid values: ENABLED, DISABLED | `string` | `"DISABLED"` | no |
+| cpu\_utilization\_high\_alarm\_threshold | The threshold to alarm at when CPU utilization is high, if not provided, the cpu\_utilization\_high\_threshold will be used | `number` | `null` | no |
 | cpu\_utilization\_high\_period | Duration of the monitoring period | `number` | `300` | no |
 | cpu\_utilization\_high\_threshold | High CPU threshold | `number` | `60` | no |
 | cpu\_utilization\_low\_period | Duration of the monitoring period | `number` | `300` | no |
 | cpu\_utilization\_low\_threshold | Low CPU threshold | `number` | `20` | no |
+| cpu\_utilization\_threshold\_statistic | The statistic to apply to the alarm's associated metric. Valid values: SampleCount, Average, Sum, Minimum, Maximum | `string` | n/a | yes |
 | create\_connection\_error\_alarm | Set to true if connection error alarm should be created | `bool` | `false` | no |
 | create\_request\_count\_alarm | Set to true if request count alarm should be created | `bool` | `false` | no |
 | create\_success\_responses\_alarm | Set to true if success responses alarm should be created | `bool` | `false` | no |
@@ -42,14 +45,17 @@ Scaling-up cool down period is 1 minute while scaling-down cool down period is 5
 | ingress\_sg\_list | List of ingress security groups that will be applied to the created Fargate service | `list(string)` | `[]` | no |
 | max\_count | Maximum number of tasks in the service, used only when autoscaling is enabled | `number` | `1` | no |
 | max\_percent | max percent of healthy container instances | `number` | `200` | no |
+| memory\_utilization\_high\_alarm\_threshold | The threshold to alarm at when memory utilization is high, if not provided, the memory\_utilization\_high\_threshold will be used | `number` | `null` | no |
 | memory\_utilization\_high\_period | Duration of the monitoring period | `number` | `300` | no |
 | memory\_utilization\_high\_threshold | High memory threshold | `number` | `60` | no |
 | memory\_utilization\_low\_period | Duration of the monitoring period | `number` | `300` | no |
 | memory\_utilization\_low\_threshold | Low memory threshold | `number` | `20` | no |
+| memory\_utilization\_threshold\_statistic | The statistic to apply to the alarm's associated metric. Valid values: SampleCount, Average, Sum, Minimum, Maximum | `string` | n/a | yes |
 | min\_count | Minimum number of tasks in the service, used only when autoscaling is enabled | `number` | `1` | no |
 | min\_healthy\_percent | min percent of healthy container instances | `number` | `100` | no |
 | monit\_resp\_success\_percentage | What percentage of requests should be responded to with 2xx | `string` | `"99"` | no |
 | monit\_target\_response\_time | service response time in seconds greater than or equal to | `string` | `"0.5"` | no |
+| monit\_target\_response\_time\_evaluation\_period | Evaluation period for target response time alarm | `string` | `"2"` | no |
 | monitoring\_config | n/a | <pre>list(object({<br>    load_balancer_arn_suffix = string<br>    target_group_arn_suffix  = string<br>    // some of the defaulted properties, such as monitoring period, can be added here<br>  }))</pre> | n/a | yes |
 | name | Name of the fargate instance | `string` | `"fargate"` | no |
 | namespace | n/a | `string` | n/a | yes |
@@ -80,7 +86,7 @@ Scaling-up cool down period is 1 minute while scaling-down cool down period is 5
 
 In order to validate any changes in this repo locally.
 
-1. Push your code up to a brach on BitBucket. 
+1. Push your code up to a branch on BitBucket. 
 2. Clone the sr-fargate-module repository. 
 3. in the sr-fargate-module repository open the *main.tf* file 
 4. Navigate to line 198 and change the *source* property for the *module "fargate-service"* to point to your branch by changing the value of the *ref=* part of the url to be like *ref=BranchName*. 

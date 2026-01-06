@@ -7,6 +7,12 @@ module "labels" {
   tags      = var.tags
 }
 
+locals {
+  // If an alarm threshold is provided, use it, otherwise use the autoscaling threshold
+  cpu_utilization_high_alarm_threshold    = var.cpu_utilization_high_alarm_threshold != null ? var.cpu_utilization_high_alarm_threshold : var.cpu_utilization_high_threshold
+  memory_utilization_high_alarm_threshold = var.memory_utilization_high_alarm_threshold != null ? var.memory_utilization_high_alarm_threshold : var.memory_utilization_high_threshold
+}
+
 resource "aws_security_group" "this" {
   #checkov:skip=CKV_AWS_23:security group description forces re-creation.
   name_prefix = "${module.labels.id}-"
@@ -159,9 +165,9 @@ module "monitoring" {
   monit_target_response_time                   = var.monit_target_response_time
   monit_target_response_time_evaluation_period = var.monit_target_response_time_evaluation_period
 
-  cpu_utilization_high_threshold         = var.cpu_utilization_high_threshold
+  cpu_utilization_high_threshold         = local.cpu_utilization_high_alarm_threshold
   cpu_utilization_threshold_statistic    = var.cpu_utilization_threshold_statistic
-  memory_utilization_high_threshold      = var.memory_utilization_high_threshold
+  memory_utilization_high_threshold      = local.memory_utilization_high_alarm_threshold
   memory_utilization_threshold_statistic = var.memory_utilization_threshold_statistic
 }
 

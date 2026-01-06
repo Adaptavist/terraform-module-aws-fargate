@@ -307,3 +307,16 @@ variable "memory_utilization_threshold_statistic" {
     error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
   }
 }
+
+variable "memory_utilization_high_alarm_threshold" {
+  type        = number
+  default     = null
+  description = "The threshold to alarm at when memory utilization is high, if not provided, the memory_utilization_high_threshold will be used"
+}
+
+variable "cpu_utilization_high_alarm_threshold" {
+  type        = number
+  default     = null
+  description = "The threshold to alarm at when cpu utilization is high, if not provided, the cpu_utilization_high_threshold will be used"
+}
+
