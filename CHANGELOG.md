@@ -1,3 +1,10 @@
+# [1.15.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.14.1...v1.15.0) (2026-01-06)
+
+
+### Features
+
+* allow for custom monitoring alarm to be set different to autoscaling limit ([9c829d8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/9c829d84ecb593e602358be8032ed6ed77748ab7))
+
 ## [1.14.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.14.0...v1.14.1) (2025-12-03)
 
 
