@@ -164,6 +164,7 @@ module "monitoring" {
   monit_resp_success_percentage                = var.monit_resp_success_percentage
   monit_target_response_time                   = var.monit_target_response_time
   monit_target_response_time_evaluation_period = var.monit_target_response_time_evaluation_period
+  anomaly_detection_width                      = var.anomaly_detection_width
 
   cpu_utilization_high_threshold         = local.cpu_utilization_high_alarm_threshold
   cpu_utilization_threshold_statistic    = var.cpu_utilization_threshold_statistic

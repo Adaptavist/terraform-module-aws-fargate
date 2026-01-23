@@ -139,3 +139,9 @@ variable "memory_utilization_high_threshold" {
   type        = number
   description = "High CPU threshold"
 }
+
+variable "anomaly_detection_width" {
+  type        = number
+  default     = null
+  description = "Width parameter for CloudWatch anomaly detection band (number of standard deviations). Higher values create wider bands (less sensitive). If null, uses CloudWatch default value (2)."
+}

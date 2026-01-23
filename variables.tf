@@ -196,6 +196,12 @@ variable "monit_target_response_time_evaluation_period" {
   description = "Evaluation period for target response time alarm"
 }
 
+variable "anomaly_detection_width" {
+  type        = number
+  default     = null
+  description = "Width parameter for CloudWatch anomaly detection band (number of standard deviations). Higher values create wider bands (less sensitive). If null, uses CloudWatch default value (2)."
+}
+
 variable "deployment_controller" {
   description = "Type of deployment controller. Valid values: CODE_DEPLOY, ECS, EXTERNAL. Default: ECS"
   default     = "ECS"
