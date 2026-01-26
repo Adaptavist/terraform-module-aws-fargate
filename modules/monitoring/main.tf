@@ -35,7 +35,7 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
 
   metric_query {
     id          = "e1"
-    expression  = "ANOMALY_DETECTION_BAND(m1)"
+    expression  = var.anomaly_detection_width != null ? "ANOMALY_DETECTION_BAND(m1, ${var.anomaly_detection_width})" : "ANOMALY_DETECTION_BAND(m1)"
     label       = "RequestCount (Expected)"
     return_data = "true"
   }
