@@ -1,3 +1,10 @@
+# [1.16.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.15.0...v1.16.0) (2026-01-26)
+
+
+### Features
+
+* allow support for configuring ANOMALY_DETECTION_BAND with custom width parameter ([c111d36](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/c111d36a1de7bfd5301c68cf935fa89c1ddc8044))
+
 # [1.15.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.14.1...v1.15.0) (2026-01-06)
 
 
