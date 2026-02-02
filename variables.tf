@@ -202,6 +202,18 @@ variable "anomaly_detection_width" {
   description = "Width parameter for CloudWatch anomaly detection band (number of standard deviations). Higher values create wider bands (less sensitive). If null, uses CloudWatch default value (2)."
 }
 
+variable "request_count_high_threshold" {
+  type        = number
+  default     = null
+  description = "Static threshold for high request count alarm. If set, replaces anomaly detection with threshold-based alarms."
+}
+
+variable "request_count_low_threshold" {
+  type        = number
+  default     = null
+  description = "Static threshold for low request count alarm. If set, replaces anomaly detection with threshold-based alarms."
+}
+
 variable "deployment_controller" {
   description = "Type of deployment controller. Valid values: CODE_DEPLOY, ECS, EXTERNAL. Default: ECS"
   default     = "ECS"
