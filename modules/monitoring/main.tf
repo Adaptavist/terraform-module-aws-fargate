@@ -22,8 +22,9 @@ module "slack-notification" {
   display_service_name = var.fargate_service_name
 }
 
+# Anomaly detection alarm (used when thresholds are not provided - backward compatible)
 resource "aws_cloudwatch_metric_alarm" "request_count" {
-  count = var.create_request_count_alarm ? length(var.monitoring_config) : 0
+  count = var.create_request_count_alarm && var.request_count_high_threshold == null && var.request_count_low_threshold == null ? length(var.monitoring_config) : 0
 
   alarm_name          = "${var.fargate_service_name}-num-requests"
   comparison_operator = "LessThanLowerOrGreaterThanUpperThreshold"
@@ -56,6 +57,52 @@ resource "aws_cloudwatch_metric_alarm" "request_count" {
         TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
       }
     }
+  }
+  tags = var.tags
+}
+
+# High request count alarm (threshold-based, used when threshold is provided)
+resource "aws_cloudwatch_metric_alarm" "request_count_high" {
+  count = var.create_request_count_alarm && var.request_count_high_threshold != null ? length(var.monitoring_config) : 0
+
+  alarm_name          = "${var.fargate_service_name}-num-requests-high"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = var.request_count_high_threshold
+  evaluation_periods  = 2
+  period              = 300
+  statistic           = "Sum"
+  metric_name         = "RequestCount"
+  namespace           = "AWS/ApplicationELB"
+  alarm_description   = "Request count above ${var.request_count_high_threshold} for ${var.fargate_service_name}"
+  treat_missing_data  = var.alarm_data_missing_action
+  alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
+
+  dimensions = {
+    LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+    TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
+  }
+  tags = var.tags
+}
+
+# Low request count alarm (threshold-based, used when threshold is provided)
+resource "aws_cloudwatch_metric_alarm" "request_count_low" {
+  count = var.create_request_count_alarm && var.request_count_low_threshold != null ? length(var.monitoring_config) : 0
+
+  alarm_name          = "${var.fargate_service_name}-num-requests-low"
+  comparison_operator = "LessThanThreshold"
+  threshold           = var.request_count_low_threshold
+  evaluation_periods  = 2
+  period              = 300
+  statistic           = "Sum"
+  metric_name         = "RequestCount"
+  namespace           = "AWS/ApplicationELB"
+  alarm_description   = "Request count below ${var.request_count_low_threshold} for ${var.fargate_service_name}"
+  treat_missing_data  = var.alarm_data_missing_action
+  alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
+
+  dimensions = {
+    LoadBalancer = var.monitoring_config[count.index].load_balancer_arn_suffix
+    TargetGroup  = var.monitoring_config[count.index].target_group_arn_suffix
   }
   tags = var.tags
 }

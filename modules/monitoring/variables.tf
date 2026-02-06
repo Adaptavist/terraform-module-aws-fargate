@@ -61,6 +61,18 @@ variable "create_request_count_alarm" {
   description = "Set to true if request count alarm should be created"
 }
 
+variable "request_count_high_threshold" {
+  type        = number
+  default     = null
+  description = "Static threshold for high request count alarm. If set, replaces anomaly detection with threshold-based alarms."
+}
+
+variable "request_count_low_threshold" {
+  type        = number
+  default     = null
+  description = "Static threshold for low request count alarm. If set, replaces anomaly detection with threshold-based alarms."
+}
+
 variable "create_success_responses_alarm" {
   type        = bool
   default     = false
