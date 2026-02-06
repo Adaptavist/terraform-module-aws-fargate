@@ -1,3 +1,10 @@
+# [1.17.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.16.0...v1.17.0) (2026-02-06)
+
+
+### Features
+
+* add support for static threshold variables and high/low alarms ([e3f6fcf](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/e3f6fcf7e0e230edb24ded9004ae277ec03f5a3c))
+
 # [1.16.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.15.0...v1.16.0) (2026-01-26)
 
 
