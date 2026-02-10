@@ -1,3 +1,10 @@
+## [1.17.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.17.0...v1.17.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* only have cpu utilisation high in prod environment ([392f484](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/392f48443d7fb5e272990b6d1effcbbae5ecb4a5))
+
 # [1.17.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.16.0...v1.17.0) (2026-02-06)
 
 
