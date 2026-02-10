@@ -227,6 +227,8 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
+  count               = var.env == "Prod" ? 1 : 0
+
   alarm_name          = "${var.fargate_service_name}-cpu-utilisation-high"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 2
