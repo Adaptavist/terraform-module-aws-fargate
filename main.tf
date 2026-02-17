@@ -168,10 +168,12 @@ module "monitoring" {
   request_count_high_threshold                 = var.request_count_high_threshold
   request_count_low_threshold                  = var.request_count_low_threshold
 
-  cpu_utilization_high_threshold         = local.cpu_utilization_high_alarm_threshold
-  cpu_utilization_threshold_statistic    = var.cpu_utilization_threshold_statistic
-  memory_utilization_high_threshold      = local.memory_utilization_high_alarm_threshold
-  memory_utilization_threshold_statistic = var.memory_utilization_threshold_statistic
+  cpu_utilization_high_threshold               = local.cpu_utilization_high_alarm_threshold
+  cpu_utilization_high_evaluation_periods      = var.cpu_utilization_high_evaluation_periods
+  cpu_utilization_high_period                  = var.cpu_utilization_high_period
+  cpu_utilization_threshold_statistic          = var.cpu_utilization_threshold_statistic
+  memory_utilization_high_threshold            = local.memory_utilization_high_alarm_threshold
+  memory_utilization_threshold_statistic       = var.memory_utilization_threshold_statistic
 }
 
 module "autoscaling" {

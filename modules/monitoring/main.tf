@@ -231,10 +231,10 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
 
   alarm_name          = "${var.fargate_service_name}-cpu-utilisation-high"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 2
+  evaluation_periods  = var.cpu_utilization_high_evaluation_periods
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = 300
+  period              = var.cpu_utilization_high_period
   statistic           = var.cpu_utilization_threshold_statistic
   threshold           = var.cpu_utilization_high_threshold
   treat_missing_data  = "notBreaching"
@@ -244,8 +244,8 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
     var.cpu_utilization_threshold_statistic,
     "CPU",
     "High",
-    5,
-    1
+    var.cpu_utilization_high_period / 60,
+    var.cpu_utilization_high_evaluation_periods
   )
 
   alarm_actions = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
