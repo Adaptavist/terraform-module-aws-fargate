@@ -1,3 +1,10 @@
+# [1.18.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.17.1...v1.18.0) (2026-02-26)
+
+
+### Features
+
+* add new optional variables for CPU utilisation ([5158873](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/51588735e3729376e55a19e7e79b352ee63b5ffe))
+
 ## [1.17.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.17.0...v1.17.1) (2026-02-10)
 
 
