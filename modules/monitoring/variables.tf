@@ -147,6 +147,18 @@ variable "cpu_utilization_high_threshold" {
   description = "High CPU threshold"
 }
 
+variable "cpu_utilization_high_evaluation_periods" {
+  type        = number
+  default     = 2
+  description = "Number of periods the CPU must be above threshold before alarming (e.g. 4 = 20 min at 5 min period)"
+}
+
+variable "cpu_utilization_high_period" {
+  type        = number
+  default     = 300
+  description = "Period in seconds for CPU high alarm metric (e.g. 300 = 5 minutes)"
+}
+
 variable "memory_utilization_high_threshold" {
   type        = number
   description = "High CPU threshold"
