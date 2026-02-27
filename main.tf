@@ -141,7 +141,7 @@ module "monitoring" {
   source = "./modules/monitoring"
 
   region         = var.region
-  env            = var.stage
+  env            = var.monitoring_env != null ? var.monitoring_env : var.stage
   namespace      = var.namespace
   tags           = module.labels.tags
   include_region = var.include_region

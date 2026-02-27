@@ -15,6 +15,13 @@ variable "stage" {
   description = "Deployment stage i.e. environment name"
 }
 
+# Optional. When set, used only for monitoring/alarm gating (e.g. create CPU/memory alarms only when == \"Prod\"). Does not affect labels or resource names. When null, monitoring uses var.stage (backward compatible).
+variable "monitoring_env" {
+  type        = string
+  default     = null
+  description = "Environment value for monitoring module (alarm creation). If null, var.stage is used. Use this to gate prod-only alarms without changing stage in labels."
+}
+
 variable "tags" {
   type        = map(string)
   description = "A set of tags that will be applied to all resources created by this module"
