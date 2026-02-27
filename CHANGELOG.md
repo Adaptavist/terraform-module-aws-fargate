@@ -1,3 +1,10 @@
+## [1.18.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.0...v1.18.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* pass optional monitoring_env so that CPU alarms can work ([6c45ce3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/6c45ce32ec8f0f5f10037bd5a0b9cbf8732b796d))
+
 # [1.18.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.17.1...v1.18.0) (2026-02-26)
 
 
