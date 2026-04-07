@@ -1,3 +1,10 @@
+## [1.18.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.1...v1.18.2) (2026-04-07)
+
+
+### Bug Fixes
+
+* attempt to fix duplicate tag issue when slack_notifications are enabled ([063202e](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/063202e20cb8afab16a767492cfbc46d015f4ac3))
+
 ## [1.18.1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.0...v1.18.1) (2026-02-27)
 
 
