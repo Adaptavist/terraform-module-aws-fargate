@@ -16,7 +16,10 @@ module "slack-notification" {
   function_name        = "slack-notifications-${var.fargate_service_name}"
   stage                = var.env
   slack_webhook_url    = var.slack_webhook_url
-  tags                 = var.tags
+  # In prod, var.env ("Prod") causes null-label to generate a Title Case Stage tag, which
+  # conflicts with the lowercase stage in var.tags. AWS IAM rejects this as a duplicate
+  # case-insensitive key on CreateRole (seen on new region rollouts e.g. eu-west-3).
+  tags                 = { for k, v in var.tags : k => v if !contains(["stage", "environment"], lower(k)) }
   include_region       = var.include_region
   aws_region           = var.region
   display_service_name = var.fargate_service_name
