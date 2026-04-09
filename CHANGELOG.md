@@ -1,3 +1,10 @@
+## [1.18.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.2...v1.18.3) (2026-04-09)
+
+
+### Bug Fixes
+
+* strip lowercase stage tag from slack-notification to prevent duplicate IAM tag key error ([5d283eb](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/5d283eb43f740787ed91c90d27c9fef773c9156d))
+
 ## [1.18.2](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.1...v1.18.2) (2026-04-07)
 
 
