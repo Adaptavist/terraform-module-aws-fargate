@@ -220,7 +220,7 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
   period              = 300
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Unhealth instances of ${var.fargate_service_name}"
-  treat_missing_data  = "breaching"
+  treat_missing_data  = var.alarm_data_missing_action
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
 
   dimensions = {
