@@ -1,3 +1,10 @@
+## [1.18.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.3...v1.18.4) (2026-05-07)
+
+
+### Bug Fixes
+
+* make unhealthy_host_count alarm use configurable treat_missing_data ([ba3fd46](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/ba3fd461356cb4e8cb555ffc3ca7c7c4231c6c5c))
+
 ## [1.18.3](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.2...v1.18.3) (2026-04-09)
 
 
