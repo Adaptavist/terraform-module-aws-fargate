@@ -152,9 +152,10 @@ module "monitoring" {
   ecs_cluster_name     = var.ecs_cluster_name
   desired_count        = var.desired_count
 
-  enable_slack_notifications = var.enable_slack_notifications
-  slack_webhook_url          = var.slack_webhook_url
-  alarm_data_missing_action  = var.alarm_data_missing_action
+  enable_slack_notifications              = var.enable_slack_notifications
+  slack_webhook_url                       = var.slack_webhook_url
+  alarm_data_missing_action               = var.alarm_data_missing_action
+  unhealthy_host_count_treat_missing_data = var.unhealthy_host_count_treat_missing_data
 
   create_connection_error_alarm                = var.create_connection_error_alarm
   create_target_response_time_alarm            = var.create_target_response_time_alarm
@@ -168,12 +169,12 @@ module "monitoring" {
   request_count_high_threshold                 = var.request_count_high_threshold
   request_count_low_threshold                  = var.request_count_low_threshold
 
-  cpu_utilization_high_threshold               = local.cpu_utilization_high_alarm_threshold
-  cpu_utilization_high_evaluation_periods      = var.cpu_utilization_high_evaluation_periods
-  cpu_utilization_high_period                  = var.cpu_utilization_high_period
-  cpu_utilization_threshold_statistic          = var.cpu_utilization_threshold_statistic
-  memory_utilization_high_threshold            = local.memory_utilization_high_alarm_threshold
-  memory_utilization_threshold_statistic       = var.memory_utilization_threshold_statistic
+  cpu_utilization_high_threshold          = local.cpu_utilization_high_alarm_threshold
+  cpu_utilization_high_evaluation_periods = var.cpu_utilization_high_evaluation_periods
+  cpu_utilization_high_period             = var.cpu_utilization_high_period
+  cpu_utilization_threshold_statistic     = var.cpu_utilization_threshold_statistic
+  memory_utilization_high_threshold       = local.memory_utilization_high_alarm_threshold
+  memory_utilization_threshold_statistic  = var.memory_utilization_threshold_statistic
 }
 
 module "autoscaling" {

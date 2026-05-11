@@ -11,11 +11,11 @@ module "slack-notification" {
   count  = var.enable_slack_notifications ? 1 : 0
   source = "git::https://github.com/Adaptavist/terraform-module-aws-alarms-slack.git?ref=0ab6ea213609910989c91c49b8dcea2445b7b7ef" # <- version 2.2.9
 
-  namespace            = var.namespace
-  description          = "Slack notifications for ${var.fargate_service_name}"
-  function_name        = "slack-notifications-${var.fargate_service_name}"
-  stage                = var.env
-  slack_webhook_url    = var.slack_webhook_url
+  namespace         = var.namespace
+  description       = "Slack notifications for ${var.fargate_service_name}"
+  function_name     = "slack-notifications-${var.fargate_service_name}"
+  stage             = var.env
+  slack_webhook_url = var.slack_webhook_url
   # In prod, var.env ("prod") causes null-label to generate a Title Case Stage tag, which
   # conflicts with the lowercase stage in var.tags. AWS IAM rejects this as a duplicate
   # case-insensitive key on CreateRole (seen on new region rollouts e.g. eu-west-3 on srcloud-dispatcher-infrastructure and srcloud-scheduled-jobs-infrastructure).
@@ -220,7 +220,7 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
   period              = 300
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Unhealth instances of ${var.fargate_service_name}"
-  treat_missing_data  = var.alarm_data_missing_action
+  treat_missing_data  = var.unhealthy_host_count_treat_missing_data
   alarm_actions       = concat([aws_sns_topic.alarm.arn], var.slack_webhook_url != "" ? [module.slack-notification.* [0].alarms_topic_arn] : [])
 
   dimensions = {
@@ -231,7 +231,7 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilisation_high" {
-  count               = var.env == "Prod" ? 1 : 0
+  count = var.env == "Prod" ? 1 : 0
 
   alarm_name          = "${var.fargate_service_name}-cpu-utilisation-high"
   comparison_operator = "GreaterThanThreshold"
