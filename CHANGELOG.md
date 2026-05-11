@@ -1,3 +1,10 @@
+## [1.18.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.4...v1.18.5) (2026-05-11)
+
+
+### Bug Fixes
+
+* kept alarm_data_missing_action for request/response-time style alarms ([eda5ea1](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/eda5ea19d26a613fb8728c1f1ad111d05f085f70))
+
 ## [1.18.4](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.3...v1.18.4) (2026-05-07)
 
 
