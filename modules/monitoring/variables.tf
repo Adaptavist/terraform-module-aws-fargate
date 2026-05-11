@@ -82,7 +82,13 @@ variable "create_success_responses_alarm" {
 variable "alarm_data_missing_action" {
   type        = string
   default     = "missing"
-  description = "Missing data action for success responses alarm. Possible values: missing or breaching"
+  description = "Missing data action for request count, success responses, and target response time alarms"
+}
+
+variable "unhealthy_host_count_treat_missing_data" {
+  type        = string
+  default     = "breaching"
+  description = "Missing data action for the unhealthy host count alarm"
 }
 
 variable "monit_resp_success_percentage" {
