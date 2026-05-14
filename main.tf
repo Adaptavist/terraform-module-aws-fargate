@@ -91,7 +91,7 @@ resource "aws_ecs_service" "fargate" {
   }
 
   lifecycle {
-    ignore_changes = [desired_count]
+    ignore_changes = var.enable_autoscaling ? [desired_count] : []
   }
 }
 
@@ -133,7 +133,10 @@ resource "aws_ecs_service" "fargate-codedeploy" {
   }
 
   lifecycle {
-    ignore_changes = [task_definition, load_balancer, desired_count]
+    ignore_changes = concat(
+      [task_definition, load_balancer],
+      var.enable_autoscaling ? [desired_count] : []
+    )
   }
 }
 
