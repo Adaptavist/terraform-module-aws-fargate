@@ -1,3 +1,10 @@
+## [1.18.6](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.5...v1.18.6) (2026-05-14)
+
+
+### Bug Fixes
+
+* make ignore_changes lifecycle rule conditional on enable_autoscaling ([e667621](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/e6676216122b1c674cda4df98d1f801f63345478))
+
 ## [1.18.5](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.4...v1.18.5) (2026-05-11)
 
 
