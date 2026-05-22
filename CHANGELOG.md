@@ -1,3 +1,10 @@
+## [1.18.7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.6...v1.18.7) (2026-05-22)
+
+
+### Bug Fixes
+
+* temporarily remove desired_count from ignore_changes to fix drift ([cd5f74d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/cd5f74d0b1a65f4a07a9d5469b1ea092e30ccaca))
+
 ## [1.18.6](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.5...v1.18.6) (2026-05-14)
 
 
