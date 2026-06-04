@@ -167,6 +167,12 @@ variable "create_success_responses_alarm" {
   description = "Set to true if success responses alarm should be created"
 }
 
+variable "create_cpu_utilization_high_alarm" {
+  type        = bool
+  default     = true
+  description = "Set to false to disable CPU utilization high alarm (only applies in Prod)"
+}
+
 variable "alarm_data_missing_action" {
   type        = string
   default     = "missing"
