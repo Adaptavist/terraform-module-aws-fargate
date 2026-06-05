@@ -163,6 +163,7 @@ module "monitoring" {
   create_unhealthy_host_count_alarm            = var.create_unhealthy_host_count_alarm
   create_request_count_alarm                   = var.create_request_count_alarm
   create_success_responses_alarm               = var.create_success_responses_alarm
+  create_cpu_utilization_high_alarm            = var.create_cpu_utilization_high_alarm
   monit_resp_success_percentage                = var.monit_resp_success_percentage
   monit_target_response_time                   = var.monit_target_response_time
   monit_target_response_time_evaluation_period = var.monit_target_response_time_evaluation_period
