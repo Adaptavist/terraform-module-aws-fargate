@@ -1,3 +1,10 @@
+## [1.18.8](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.7...v1.18.8) (2026-06-05)
+
+
+### Bug Fixes
+
+* add create_cpu_utilization_high_alarm variable to allow disabling CPU alarm ([f92b6a9](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/f92b6a9dc8a45157d8fd955188807cc9ab452be4))
+
 ## [1.18.7](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.6...v1.18.7) (2026-05-22)
 
 
