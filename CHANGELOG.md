@@ -1,3 +1,10 @@
+## [1.18.10](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.9...v1.18.10) (2026-06-10)
+
+
+### Bug Fixes
+
+* always ignore desired count ([924668d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/924668d4f8c07d732df5e79472ef3683a0e263fa))
+
 ## [1.18.9](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.8...v1.18.9) (2026-06-10)
 
 
