@@ -90,8 +90,9 @@ resource "aws_ecs_service" "fargate" {
     type = var.deployment_controller
   }
 
-  # PLT-3413: Temporarily removed lifecycle block to fix desired_count drift
-  # Will be restored after drift is corrected
+  lifecycle {
+    ignore_changes = var.enable_autoscaling ? [desired_count] : []
+  }
 }
 
 resource "aws_ecs_service" "fargate-codedeploy" {
@@ -132,9 +133,10 @@ resource "aws_ecs_service" "fargate-codedeploy" {
   }
 
   lifecycle {
-    # PLT-3413: Temporarily removed desired_count to fix drift
-    # Will be restored after drift is corrected
-    ignore_changes = [task_definition, load_balancer]
+    ignore_changes = concat(
+      [task_definition, load_balancer],
+        var.enable_autoscaling ? [desired_count] : []
+    )
   }
 }
 
