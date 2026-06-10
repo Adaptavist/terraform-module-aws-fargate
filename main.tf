@@ -90,8 +90,18 @@ resource "aws_ecs_service" "fargate" {
     type = var.deployment_controller
   }
 
+  # desired_count is always ignored regardless of whether autoscaling is enabled.
+  # Ideally this would be conditional, but Terraform evaluates lifecycle blocks before
+  # resolving variables, so dynamic expressions (ternary, concat, local vars) are not valid
+  # there — "A static list expression is required" errors are produced. The alternative is duplicating the
+  # ecs service resource block into autoscaling/non-autoscaling variants, which is a significant
+  # refactor with complex state migration requirements. The trade-off is that changes to
+  # var.desired_count for non-autoscaling services must be applied via
+  # `aws ecs update-service --desired-count <n>` or console changes alongside the IaC change to do so, since
+  # Terraform will not apply the diff for any non-autoscaling services/environments (e.g. dev/stg) using this module.
+  # https://adaptavist.slack.com/archives/C05R7MT5W3G/p1781086826265489
   lifecycle {
-    ignore_changes = var.enable_autoscaling ? [desired_count] : []
+    ignore_changes = [desired_count]
   }
 }
 
@@ -132,11 +142,9 @@ resource "aws_ecs_service" "fargate-codedeploy" {
     type = var.deployment_controller
   }
 
+  # For desired_count, see comment above
   lifecycle {
-    ignore_changes = concat(
-      [task_definition, load_balancer],
-        var.enable_autoscaling ? [desired_count] : []
-    )
+    ignore_changes = [task_definition, load_balancer, desired_count]
   }
 }
 
