@@ -1,3 +1,10 @@
+## [1.18.11](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.10...v1.18.11) (2026-11-04)
+
+
+### Bug Fixes
+
+* fire unhealthy host count alarm at 1 unhealthy host ([93d78ba](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/93d78ba278b52b4b90e033855aac2e109be7b4f8))
+
 ## [1.18.10](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.9...v1.18.10) (2026-06-10)
 
 
