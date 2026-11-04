@@ -115,11 +115,6 @@ variable "monit_target_response_time_evaluation_period" {
   description = "Evaluation period for target response time alarm"
 }
 
-variable "desired_count" {
-  type        = number
-  description = "desired number of container instances running"
-}
-
 variable "enable_slack_notifications" {
   type        = bool
   default     = false
