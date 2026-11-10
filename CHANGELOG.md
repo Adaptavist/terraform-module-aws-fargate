@@ -1,3 +1,10 @@
+## [1.18.12](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.11...v1.18.12) (2026-11-10)
+
+
+### Bug Fixes
+
+* revert unhealthy host count alarm threshold to floor(desired_count / 2) ([002d470](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/002d470acf52aa734955952458b1763b7e91822d)), closes [#56](http://bitbucket.org/adaptavistlabs/module-aws-fargate/issue/56)
+
 ## [1.18.11](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.10...v1.18.11) (2026-11-04)
 
 
