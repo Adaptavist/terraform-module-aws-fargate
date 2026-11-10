@@ -185,6 +185,17 @@ variable "unhealthy_host_count_treat_missing_data" {
   description = "Missing data action for the unhealthy host count alarm"
 }
 
+variable "unhealthy_host_count_alarm_threshold" {
+  type        = number
+  default     = null
+  description = "The number of unhealthy hosts to alarm at, if not provided, half of desired_count will be used"
+
+  validation {
+    condition     = coalesce(var.unhealthy_host_count_alarm_threshold, 1) >= 1
+    error_message = "must be 1 or more, 0 would keep the alarm firing all the time."
+  }
+}
+
 variable "enable_slack_notifications" {
   type        = bool
   default     = false

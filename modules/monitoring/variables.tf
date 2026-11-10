@@ -97,6 +97,11 @@ variable "unhealthy_host_count_treat_missing_data" {
   description = "Missing data action for the unhealthy host count alarm"
 }
 
+variable "unhealthy_host_count_alarm_threshold" {
+  type        = number
+  description = "The number of unhealthy hosts to alarm at, if not provided, half of desired_count will be used"
+}
+
 variable "monit_resp_success_percentage" {
   type        = string
   default     = "99"
