@@ -1,3 +1,10 @@
+# [1.20.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.19.0...v1.20.0) (2026-11-16)
+
+
+### Features
+
+* add optional unhealthy host count alarm evaluation periods ([6983e5a](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/6983e5a3e57020b7945b5d065998c3fccf427389))
+
 # [1.19.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.12...v1.19.0) (2026-11-16)
 
 
