@@ -1,3 +1,10 @@
+# [1.19.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.12...v1.19.0) (2026-11-16)
+
+
+### Features
+
+* add optional unhealthy host count alarm threshold ([cd8cf5f](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/cd8cf5f5d902ad73f7053f49b7804f3cc94212d7))
+
 ## [1.18.12](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.18.11...v1.18.12) (2026-11-10)
 
 
