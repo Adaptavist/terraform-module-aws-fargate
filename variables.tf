@@ -196,6 +196,18 @@ variable "unhealthy_host_count_alarm_threshold" {
   }
 }
 
+variable "unhealthy_host_count_evaluation_periods" {
+  type        = number
+  default     = 2
+  nullable    = false
+  description = "The number of 5 minute periods the unhealthy host count must breach before alarming"
+
+  validation {
+    condition     = var.unhealthy_host_count_evaluation_periods >= 1 && floor(var.unhealthy_host_count_evaluation_periods) == var.unhealthy_host_count_evaluation_periods
+    error_message = "must be a whole number of 1 or more."
+  }
+}
+
 variable "enable_slack_notifications" {
   type        = bool
   default     = false

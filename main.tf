@@ -168,6 +168,7 @@ module "monitoring" {
   alarm_data_missing_action               = var.alarm_data_missing_action
   unhealthy_host_count_treat_missing_data = var.unhealthy_host_count_treat_missing_data
   unhealthy_host_count_alarm_threshold    = var.unhealthy_host_count_alarm_threshold
+  unhealthy_host_count_evaluation_periods = var.unhealthy_host_count_evaluation_periods
 
   create_connection_error_alarm                = var.create_connection_error_alarm
   create_target_response_time_alarm            = var.create_target_response_time_alarm
