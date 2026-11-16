@@ -216,7 +216,7 @@ resource "aws_cloudwatch_metric_alarm" "unhealthy_host_count" {
   metric_name         = "UnHealthyHostCount"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   threshold           = coalesce(var.unhealthy_host_count_alarm_threshold, floor(var.desired_count / 2))
-  evaluation_periods  = 2
+  evaluation_periods  = var.unhealthy_host_count_evaluation_periods
   period              = 300
   namespace           = "AWS/ApplicationELB"
   alarm_description   = "Unhealth instances of ${var.fargate_service_name}"

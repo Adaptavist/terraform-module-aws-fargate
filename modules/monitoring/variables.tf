@@ -102,6 +102,11 @@ variable "unhealthy_host_count_alarm_threshold" {
   description = "The number of unhealthy hosts to alarm at, if not provided, half of desired_count will be used"
 }
 
+variable "unhealthy_host_count_evaluation_periods" {
+  type        = number
+  description = "The number of 5 minute periods the unhealthy host count must breach before alarming"
+}
+
 variable "monit_resp_success_percentage" {
   type        = string
   default     = "99"
