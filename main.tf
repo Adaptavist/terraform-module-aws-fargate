@@ -204,12 +204,12 @@ module "autoscaling" {
   cpu_utilization_high_threshold         = var.cpu_utilization_high_threshold
   cpu_utilization_low_period             = var.cpu_utilization_low_period
   cpu_utilization_low_threshold          = var.cpu_utilization_low_threshold
-  cpu_utilization_threshold_statistic    = var.cpu_utilization_threshold_statistic
+  cpu_utilization_threshold_statistic    = coalesce(var.cpu_utilization_autoscaling_statistic, var.cpu_utilization_threshold_statistic)
   memory_utilization_high_period         = var.memory_utilization_high_period
   memory_utilization_high_threshold      = var.memory_utilization_high_threshold
   memory_utilization_low_period          = var.memory_utilization_low_period
   memory_utilization_low_threshold       = var.memory_utilization_low_threshold
-  memory_utilization_threshold_statistic = var.memory_utilization_threshold_statistic
+  memory_utilization_threshold_statistic = coalesce(var.memory_utilization_autoscaling_statistic, var.memory_utilization_threshold_statistic)
 
   tags = module.labels.tags
 }

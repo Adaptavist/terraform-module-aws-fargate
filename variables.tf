@@ -374,6 +374,28 @@ variable "memory_utilization_threshold_statistic" {
   }
 }
 
+variable "cpu_utilization_autoscaling_statistic" {
+  type        = string
+  default     = null
+  description = "The statistic for the cpu autoscaling alarms and policies, if not provided, the cpu_utilization_threshold_statistic will be used"
+
+  validation {
+    condition     = var.cpu_utilization_autoscaling_statistic == null ? true : contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.cpu_utilization_autoscaling_statistic)
+    error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+  }
+}
+
+variable "memory_utilization_autoscaling_statistic" {
+  type        = string
+  default     = null
+  description = "The statistic for the memory autoscaling alarms and policies, if not provided, the memory_utilization_threshold_statistic will be used"
+
+  validation {
+    condition     = var.memory_utilization_autoscaling_statistic == null ? true : contains(["SampleCount", "Average", "Sum", "Minimum", "Maximum"], var.memory_utilization_autoscaling_statistic)
+    error_message = "must be one of: SampleCount, Average, Sum, Minimum, Maximum."
+  }
+}
+
 variable "memory_utilization_high_alarm_threshold" {
   type        = number
   default     = null
