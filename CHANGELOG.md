@@ -1,3 +1,10 @@
+# [1.21.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.20.0...v1.21.0) (2026-11-18)
+
+
+### Features
+
+* add optional cpu and memory autoscaling statistic ([551826d](http://bitbucket.org/adaptavistlabs/module-aws-fargate/commits/551826dda22e57bf4a720461383bb0bd66777e74))
+
 # [1.20.0](http://bitbucket.org/adaptavistlabs/module-aws-fargate/compare/v1.19.0...v1.20.0) (2026-11-16)
 
 
